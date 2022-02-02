@@ -4,7 +4,7 @@
  *
  * To rebuild or modify this file with the latest versions of the included
  * software please visit:
- *   https://datatables.net/download/#zf/pdfmake-0.1.36/dt-1.11.4/b-2.2.2/b-html5-2.2.2/b-print-2.2.2
+ *   https://datatables.net/download/#bs5/pdfmake-0.1.36/dt-1.11.4/b-2.2.2/b-html5-2.2.2/b-print-2.2.2
  *
  * Included libraries:
  *   pdfmake 0.1.36, DataTables 1.11.4, Buttons 2.2.2, HTML5 export 2.2.2, Print view 2.2.2
@@ -64558,7 +64558,7 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 		 *
 		 *  @type string
 		 */
-		build:"zf/pdfmake-0.1.36/dt-1.11.4/b-2.2.2/b-html5-2.2.2/b-print-2.2.2",
+		build:"bs5/pdfmake-0.1.36/dt-1.11.4/b-2.2.2/b-html5-2.2.2/b-print-2.2.2",
 	
 	
 		/**
@@ -65833,16 +65833,16 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 }));
 
 
-/*! DataTables Foundation integration
- * ©2011-2015 SpryMedia Ltd - datatables.net/license
+/*! DataTables Bootstrap 5 integration
+ * 2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
- * DataTables integration for Foundation. This requires Foundation 5 and
+ * DataTables integration for Bootstrap 4. This requires Bootstrap 5 and
  * DataTables 1.10 or newer.
  *
  * This file sets the defaults and adds options to DataTables to style its
- * controls using Foundation. See http://datatables.net/manual/styling/foundation
+ * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
  * for further information.
  */
 (function( factory ){
@@ -65860,6 +65860,9 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 			}
 
 			if ( ! $ || ! $.fn.dataTable ) {
+				// Require DataTables, which attaches to jQuery, including
+				// jQuery if needed and have a $ property so we can access the
+				// jQuery object that is used
 				$ = require('datatables.net')(root, $).$;
 			}
 
@@ -65874,43 +65877,40 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 'use strict';
 var DataTable = $.fn.dataTable;
 
-// Detect Foundation 5 / 6 as they have different element and class requirements
-var meta = $('<meta class="foundation-mq"/>').appendTo('head');
-DataTable.ext.foundationVersion = meta.css('font-family').match(/small|medium|large/) ? 6 : 5;
-meta.remove();
-
-
-$.extend( DataTable.ext.classes, {
-	sWrapper:    "dataTables_wrapper dt-foundation",
-	sProcessing: "dataTables_processing panel callout"
-} );
-
 
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row grid-x'<'small-6 columns cell'l><'small-6 columns cell'f>r>"+
-		"t"+
-		"<'row grid-x'<'small-6 columns cell'i><'small-6 columns cell'p>>",
-	renderer: 'foundation'
+		"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+	renderer: 'bootstrap'
 } );
 
 
-/* Page button renderer */
-DataTable.ext.renderer.pageButton.foundation = function ( settings, host, idx, buttons, page, pages ) {
-	var api = new DataTable.Api( settings );
+/* Default class modification */
+$.extend( DataTable.ext.classes, {
+	sWrapper:      "dataTables_wrapper dt-bootstrap5",
+	sFilterInput:  "form-control form-control-sm",
+	sLengthSelect: "form-select form-select-sm",
+	sProcessing:   "dataTables_processing card",
+	sPageButton:   "paginate_button page-item"
+} );
+
+
+/* Bootstrap paging button renderer */
+DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {
+	var api     = new DataTable.Api( settings );
 	var classes = settings.oClasses;
-	var lang = settings.oLanguage.oPaginate;
+	var lang    = settings.oLanguage.oPaginate;
 	var aria = settings.oLanguage.oAria.paginate || {};
-	var btnDisplay, btnClass;
-	var tag;
-	var v5 = DataTable.ext.foundationVersion === 5;
+	var btnDisplay, btnClass, counter=0;
 
 	var attach = function( container, buttons ) {
 		var i, ien, node, button;
 		var clickHandler = function ( e ) {
 			e.preventDefault();
-			if ( !$(e.currentTarget).hasClass('unavailable') && api.page() != e.data.action ) {
+			if ( !$(e.currentTarget).hasClass('disabled') && api.page() != e.data.action ) {
 				api.page( e.data.action ).draw( 'page' );
 			}
 		};
@@ -65924,84 +65924,94 @@ DataTable.ext.renderer.pageButton.foundation = function ( settings, host, idx, b
 			else {
 				btnDisplay = '';
 				btnClass = '';
-				tag = null;
 
 				switch ( button ) {
 					case 'ellipsis':
 						btnDisplay = '&#x2026;';
-						btnClass = 'unavailable disabled';
-						tag = null;
+						btnClass = 'disabled';
 						break;
 
 					case 'first':
 						btnDisplay = lang.sFirst;
 						btnClass = button + (page > 0 ?
-							'' : ' unavailable disabled');
-						tag = page > 0 ? 'a' : null;
+							'' : ' disabled');
 						break;
 
 					case 'previous':
 						btnDisplay = lang.sPrevious;
 						btnClass = button + (page > 0 ?
-							'' : ' unavailable disabled');
-						tag = page > 0 ? 'a' : null;
+							'' : ' disabled');
 						break;
 
 					case 'next':
 						btnDisplay = lang.sNext;
 						btnClass = button + (page < pages-1 ?
-							'' : ' unavailable disabled');
-						tag = page < pages-1 ? 'a' : null;
+							'' : ' disabled');
 						break;
 
 					case 'last':
 						btnDisplay = lang.sLast;
 						btnClass = button + (page < pages-1 ?
-							'' : ' unavailable disabled');
-						tag = page < pages-1 ? 'a' : null;
+							'' : ' disabled');
 						break;
 
 					default:
 						btnDisplay = button + 1;
 						btnClass = page === button ?
-							'current' : '';
-						tag = page === button ?
-							null : 'a';
+							'active' : '';
 						break;
-				}
-
-				if ( v5 ) {
-					tag = 'a';
 				}
 
 				if ( btnDisplay ) {
 					node = $('<li>', {
 							'class': classes.sPageButton+' '+btnClass,
-							'aria-controls': settings.sTableId,
-							'aria-label': aria[ button ],
-							'tabindex': settings.iTabIndex,
 							'id': idx === 0 && typeof button === 'string' ?
 								settings.sTableId +'_'+ button :
 								null
 						} )
-						.append( tag ?
-							$('<'+tag+'/>', {'href': '#'} ).html( btnDisplay ) :
-							btnDisplay
+						.append( $('<a>', {
+								'href': '#',
+								'aria-controls': settings.sTableId,
+								'aria-label': aria[ button ],
+								'data-dt-idx': counter,
+								'tabindex': settings.iTabIndex,
+								'class': 'page-link'
+							} )
+							.html( btnDisplay )
 						)
 						.appendTo( container );
 
 					settings.oApi._fnBindAction(
 						node, {action: button}, clickHandler
 					);
+
+					counter++;
 				}
 			}
 		}
 	};
 
+	// IE9 throws an 'unknown error' if document.activeElement is used
+	// inside an iframe or frame. 
+	var activeEl;
+
+	try {
+		// Because this approach is destroying and recreating the paging
+		// elements, focus is lost on the select button which is bad for
+		// accessibility. So we want to restore focus once the draw has
+		// completed
+		activeEl = $(host).find(document.activeElement).data('dt-idx');
+	}
+	catch (e) {}
+
 	attach(
 		$(host).empty().html('<ul class="pagination"/>').children('ul'),
 		buttons
 	);
+
+	if ( activeEl !== undefined ) {
+		$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
+	}
 };
 
 
@@ -68489,14 +68499,14 @@ return Buttons;
 }));
 
 
-/*! Foundation integration for DataTables' Buttons
+/*! Bootstrap integration for DataTables' Buttons
  * ©2016 SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery', 'datatables.net-zf', 'datatables.net-buttons'], function ( $ ) {
+		define( ['jquery', 'datatables.net-bs5', 'datatables.net-buttons'], function ( $ ) {
 			return factory( $, window, document );
 		} );
 	}
@@ -68508,7 +68518,7 @@ return Buttons;
 			}
 
 			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-zf')(root, $).$;
+				$ = require('datatables.net-bs5')(root, $).$;
 			}
 
 			if ( ! $.fn.dataTable.Buttons ) {
@@ -68526,82 +68536,53 @@ return Buttons;
 'use strict';
 var DataTable = $.fn.dataTable;
 
-
-// F6 has different requirements for the dropdown button set. We can use the
-// Foundation version found by DataTables in order to support both F5 and F6 in
-// the same file, but not that this requires DataTables 1.10.11+ for F6 support.
-var collection = DataTable.ext.foundationVersion === 6 ?
-	{
-		tag: 'div',
-		className: 'dropdown-pane is-open button-group stacked'
-	} :
-	{
-		tag: 'ul',
-		className: 'f-dropdown open dropdown-pane is-open',
-		closeButton: false,
-		button: {
-			tag: 'li',
-			className: 'small',
-			active: 'active',
-			disabled: 'disabled'
-		},
-		buttonLiner: {
-			tag: 'a'
-		}
-	};
-
 $.extend( true, DataTable.Buttons.defaults, {
 	dom: {
 		container: {
-			tag: 'div',
-			className: 'dt-buttons button-group'
-		},
-		buttonContainer: {
-			tag: null,
-			className: ''
+			className: 'dt-buttons btn-group flex-wrap'
 		},
 		button: {
-			tag: 'a',
-			className: 'dt-button button small',
-			active: 'secondary'
+			className: 'btn btn-secondary'
 		},
-		buttonLiner: {
-			tag: null
+		collection: {
+			tag: 'div',
+			className: 'dropdown-menu',
+			closeButton: false,
+			button: {
+				tag: 'a',
+				className: 'dt-button dropdown-item',
+				active: 'active',
+				disabled: 'disabled'
+			}
 		},
-		collection: collection,
 		splitWrapper: {
 			tag: 'div',
-			className: 'dt-btn-split-wrapper button-group',
+			className: 'dt-btn-split-wrapper btn-group',
 			closeButton: false,
 		},
 		splitDropdown: {
 			tag: 'button',
 			text: '',
-			className: 'button dt-btn-split-drop dropdown arrow-only',
+			className: 'btn btn-secondary dt-btn-split-drop dropdown-toggle dropdown-toggle-split',
 			closeButton: false,
+			align: 'split-left',
+			splitAlignClass: 'dt-button-split-left'
 		},
 		splitDropdownButton: {
 			tag: 'button',
-			className: 'dt-btn-split-drop-button button small',
+			className: 'dt-btn-split-drop-button btn btn-secondary',
 			closeButton: false
 		}
+	},
+	buttonCreated: function ( config, button ) {
+		return config.buttons ?
+			$('<div class="btn-group"/>').append(button) :
+			button;
 	}
 } );
 
-
-DataTable.ext.buttons.collection.className = 'dropdown';
-
-$(document).on('buttons-popover.dt', function () {
-	var notButton = false;
-	$('.dtsp-panesContainer').each(function() {
-		if(!$(this).is('button')){
-			notButton = true;
-		}
-	});
-	if(notButton){
-		$('.dtsp-panesContainer').removeClass('button-group stacked')
-	}
-});
+DataTable.ext.buttons.collection.className += ' dropdown-toggle';
+DataTable.ext.buttons.collection.rightAlignClassName = 'dropdown-menu-right';
 
 return DataTable.Buttons;
 }));
