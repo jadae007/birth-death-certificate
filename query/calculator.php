@@ -1,32 +1,10 @@
 <?php
-$arr_atikawan_y = [2500,2506,2513,2516,2522,2530,2533,2540,2543,2549,2552,2559,2563,2568,2575,2578,2586,2589,2595];
-
-
-$year = "2021";
-$is_atikamas = (fmod((($year - 78) - 0.45222),2.7118886)<1)?1:0;
-echo $is_atikamas; // เท่ากับ 1 เป็นปี อธิกมาส
-
-
-$_begin_thai_date = "1956-12-03";
-$arr_atikawan_y = [2500,2506,2513,2516,2522,2530,2533,2540,2543,2549,2552,2559,2563,2568,2575,2578,2586,2589,2595];
-$_begin_year = 1957;
-$_check_year = 2021; // ปีที่จะหาข้อมูล
-for($i = $_begin_year; $i <= $_check_year; $i++){
-    $is_atikamas = (fmod((($i - 78) - 0.45222),2.7118886)<1)?1:0;
-    $is_atikawan = (in_array(($i+543),$arr_atikawan_y))?1:0;
-    $day_in_year = 354;
-    $day_in_year = ($is_atikamas==1)?384:$day_in_year;
-    $day_in_year = ($is_atikawan==1)?355:$day_in_year;
-     
-    echo $i." - ".$day_in_year."<br>";
-}
-
-
 $_begin_thai_date = "1956-12-03";
 $arr_atikawan_y = [2500,2506,2513,2516,2522,2530,2533,2540,2543,2549,2552,2559,2563,2568,2575,2578,2586,2589,2595];
 $_begin_year = 1957;
 $_check_year = 2021; // ปีที่จะหาข้อมูล
 $day_add = 0; // วันที่เพิ่มแต่ละปี
+$arr_year;
 for($i = $_begin_year; $i <= $_check_year; $i++){
     $is_atikamas = (fmod((($i - 78) - 0.45222),2.7118886)<1)?1:0;
     $is_atikawan = (in_array(($i+543),$arr_atikawan_y))?1:0;
@@ -36,6 +14,7 @@ for($i = $_begin_year; $i <= $_check_year; $i++){
      
     // วันขึ้น 1 ค่ำ เดือน 1 ของแต่ละปี
     $begin_buddhist_day_of_year = date("Y-m-d",strtotime($_begin_thai_date." +$day_add day")); // 
+
     $day_add+= $day_in_year; // เพิ่มวันแต่ละปี
     // echo $i." - ".$day_in_year." - ".$begin_buddhist_day_of_year."<br>";
     $c_day = 0; // นับวัน
@@ -76,11 +55,16 @@ for($i = $_begin_year; $i <= $_check_year; $i++){
             echo date("Y-m-d",strtotime($begin_buddhist_day_of_year."+ $v day"))." - ";
             // แสดงวันข้างขื้น หรือข้างแรม
             if($c_d_day>0){
-                echo "แรม $c_d_day ค่ำ เดือน $current_month "."<br>";
+                echo "แรม $c_d_day  เดือน $current_month "."<br>";
+                
             }else{
-                echo "ขึ้น $c_u_day ค่ำ เดือน $current_month "."<br>";
+                echo "ขึ้น $c_u_day เดือน $current_month "."<br>";
             }
         } 
     }
 }
+
+json_encode($arr_year);
+echo json_encode($arr_year);
+
 ?>

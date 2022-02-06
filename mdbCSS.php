@@ -8,3 +8,9 @@
 <link href="./assets/css/mdb.min.css" rel="stylesheet" />
 <!-- DataTables -->
 <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.min.css"/>
+
+<style>
+  body {
+  font-family: 'Prompt', sans-serif;
+}
+</style>
