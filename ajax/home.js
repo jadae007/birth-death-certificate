@@ -1,21 +1,120 @@
 $(document).ready(function () {
-  $("#table").DataTable();
   $("#birthMenu a").addClass("active ");
+  showAllBaby();
 });
 
 $("#hideModal").click(function () {
   $("#addBabyFrom")[0].reset();
-  $(":input").removeClass("border border-danger")
+  $(":input").removeClass("border border-danger");
 });
 $("#btnX").click(function () {
   $("#addBabyFrom")[0].reset();
-  $(":input").removeClass("border border-danger")
+  $(":input").removeClass("border border-danger");
 });
+
+$("#editHideModal").click(function () {
+  $("#showBabyFrom")[0].reset();
+  $(":input").removeClass("border border-danger");
+});
+$("#editBtnX").click(function () {
+  $("#showBabyFrom")[0].reset();
+  $(":input").removeClass("border border-danger");
+});
+
+$("#editSave").click(function () {
+  editBaby();
+
+});
+
 
 $("#birthDate").change(function () {
   let selectDate = $(this).val().split("T")[0];
   calDay(selectDate);
 });
+
+const showAllBaby = () => {
+  $.ajax({
+    type: "get",
+    url: "query/showAllBaby.php",
+    success: function (data) {
+      const { babyObj } = JSON.parse(data);
+      babyObj.forEach((element) => {
+        $("#tbody").append(`
+      <tr>
+      <th scope="row">${element.id}</th>
+      <td>${element.prename}${element.firstName} ${element.lastName}</td>
+      <td>${element.birthDateTime.split(" ")[0]}</td>
+      <td>${element.weight}</td>
+      <td>${element.preNameFather}${element.firstNameFather} ${
+          element.lastNameFather
+        }</td>
+      <td>${element.preNameMother}${element.firstNameMother} ${
+          element.lastNameMother
+        }</td>
+      <td>${element.informerName}</td>
+      <td>
+        <button type="button" class="btn btn-info btn-floating" onclick="showInfo(${
+          element.id
+        })"><i class="fas fa-info-circle"></i></button>
+        <button type="button" class="btn btn-danger btn-floating" onclick="deleteBaby(${
+          element.id
+        })"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+      `);
+      });
+      $("#babyTable").DataTable();
+    },
+  });
+};
+
+const editBaby = () => {
+  let form = $("#showBabyFrom")[0];
+  let data = new FormData(form);
+
+  console.log(form);
+};
+
+const deleteBaby = (id) => {
+  console.log("delete" + id);
+};
+
+const showInfo = (id) => {
+  $("#showBaby").modal("show");
+  $.ajax({
+    type: "get",
+    url: "query/showOneBaby.php",
+    data: {
+      id,
+    },
+    success: function (data) {
+      const new_data = JSON.parse(data);
+      console.log(new_data);
+      $("#editPrename").val(new_data.prename);
+      $("#editFirstName").val(new_data.firstName);
+      $("#editLastName").val(new_data.lastName);
+      $("#editBirthDate").val(new_data.birthDateAndtime);
+      $("#editWeight").val(new_data.weight);
+      $("#editBirthDay").val(new_data.birthDay);
+      $("#editLunarPhase").val(new_data.lunarPhase);
+      $("#editThaiMonth").val(new_data.thaiMonth);
+      $("#editThaiYears").val(new_data.thaiYears);
+      $("#editPreNameFather").val(new_data.preNameFather);
+      $("#editFirstNameFather").val(new_data.firstNameFather);
+      $("#editLastNameFather").val(new_data.lastNameFather);
+      $("#editPreNameMother").val(new_data.preNameMother);
+      $("#editFirstNameMother").val(new_data.firstNameMother);
+      $("#editLastNameMother").val(new_data.lastNameMother);
+      $("#editCidFather").val(new_data.cidFather);
+      $("#editCidMother").val(new_data.cidMother);
+      $("#editAddress").val(new_data.address);
+      $("#editInformerName").val(new_data.informerName);
+      $("#editInformerTel").val(new_data.informerTel);
+      $("#editRelation").val(new_data.relation);
+      $("#idForEdit").val(new_data.id);
+    },
+  });
+};
 
 const calDay = (date) => {
   $.getJSON("json/2022.json", function (data) {
@@ -176,7 +275,7 @@ $("#save").click(function () {
         if (status == "true") {
           $("#addBaby").modal("hide");
           $("#addBabyFrom")[0].reset();
-          $(":input").removeClass("border border-danger")
+          $(":input").removeClass("border border-danger");
           SoloAlert.alert({
             title: "Success!!",
             body: "บันทึกการแจ้งเกิดเรียบร้อยแล้ว",
