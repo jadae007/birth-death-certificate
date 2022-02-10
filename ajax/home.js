@@ -1,31 +1,56 @@
+var getZipCode = {};
 $(document).ready(function () {
   $("#birthMenu a").addClass("active ");
   showAllBaby();
+  showProvinces();
+});
+$("#provinces").change(function () {
+  $("#amphures").children().remove();
+  $("#districts").children().remove();
+  showDistricts($(this).val());
+});
+
+$("#amphures").change(function () {
+  $("#districts").children().remove();
+  showSubDistricts($(this).val());
+});
+
+$("#districts").change(function () {
+  getZipCode.forEach((element) => {
+    if ($(this).val() == element.id) {
+      $("#zipCode").val(element.zip_code);
+    }
+  });
 });
 
 $("#hideModal").click(function () {
-  $("#addBabyFrom")[0].reset();
   $(":input").removeClass("border border-danger");
+  $("#addBabyFrom")[0].reset();
 });
 $("#btnX").click(function () {
-  $("#addBabyFrom")[0].reset();
   $(":input").removeClass("border border-danger");
+  $("#addBabyFrom")[0].reset();
 });
 
 $("#editHideModal").click(function () {
-  $("#showBabyFrom")[0].reset();
   $(":input").removeClass("border border-danger");
+  $("#showBabyFrom")[0].reset();
 });
 $("#editBtnX").click(function () {
-  $("#showBabyFrom")[0].reset();
   $(":input").removeClass("border border-danger");
+  $("#showBabyFrom")[0].reset();
 });
 
 $("#editSave").click(function () {
-  editBaby();
-
+  if ($(this).val() == "edit") {
+    $(this).val("save");
+    $(".canEdit").prop("disabled", false);
+  } else {
+    $(this).val("edit");
+    $(".canEdit").prop("disabled", true);
+  }
+  // editBaby();
 });
-
 
 $("#birthDate").change(function () {
   let selectDate = $(this).val().split("T")[0];
@@ -63,20 +88,142 @@ const showAllBaby = () => {
     </tr>
       `);
       });
-      $("#babyTable").DataTable();
+      table = $("#babyTable").DataTable();
     },
   });
 };
 
 const editBaby = () => {
-  let form = $("#showBabyFrom")[0];
-  let data = new FormData(form);
-
-  console.log(form);
+  // let form = $("#showBabyFrom")[0];
+  // let data = new FormData(form);
+  // console.log(form);
 };
 
+const showSubDistricts = (districtId) => {
+  $.ajax({
+    type: "get",
+    data: {
+      districtId,
+    },
+    url: "query/showSubDistricts.php",
+    success: function (response) {
+      const { subDistrictsObj } = JSON.parse(response);
+      subDistrictsObj.forEach((element) => {
+        $("#districts").append(`
+          <option value="${element.id}">${element.name_in_thai}</option>
+          `);
+      });
+      $("#zipCode").val(subDistrictsObj[0].zip_code);
+      getZipCode = subDistrictsObj;
+    },
+  });
+};
+
+const showDistricts = (provinceId) => {
+  $.ajax({
+    type: "get",
+    data: {
+      provinceId,
+    },
+    url: "query/showDistricts.php",
+    success: function (response) {
+      const { districtsObj } = JSON.parse(response);
+      districtsObj.forEach((element) => {
+        $("#amphures").append(`
+          <option value="${element.id}">${element.name_in_thai}</option>
+          `);
+      });
+      showSubDistricts(districtsObj[0].id);
+    },
+  });
+};
+
+const showProvinces = () => {
+  $.ajax({
+    type: "get",
+    url: "query/showProvinces.php",
+    success: function (response) {
+      const { provincesObj } = JSON.parse(response);
+      showDistricts(provincesObj[0].id);
+      provincesObj.forEach((element) => {
+        $("#provinces").append(`
+          <option value="${element.id}">${element.name_in_thai}</option>
+          `);
+      });
+    },
+  });
+};
 const deleteBaby = (id) => {
   console.log("delete" + id);
+};
+
+const showInfoSubDistrict = (districtId, subDistrictId) => {
+  $.ajax({
+    type: "get",
+    data: {
+      districtId,
+    },
+    url: "query/showSubDistricts.php",
+    success: function (response) {
+      const { subDistrictsObj } = JSON.parse(response);
+      let html = "";
+      subDistrictsObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (subDistrictId == element.id) {
+          html += " selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+
+      $("#editDistricts").append(html);
+      $("#editZipCode").val(subDistrictsObj[0].zip_code);
+      getZipCode = subDistrictsObj;
+    },
+  });
+};
+
+const showInfoDistrict = (provinceId) => {
+  $.ajax({
+    type: "get",
+    data: {
+      provinceId,
+    },
+    url: "query/showDistricts.php",
+    success: function (response) {
+      const { districtsObj } = JSON.parse(response);
+      let html = "";
+      districtsObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (provinceId == element.id) {
+          html += "selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+      //  showInfoSubDistricts(districtsObj[0].id)
+      $("#editAmphures").append(html);
+    },
+  });
+};
+
+const showInfoProvince = (provinceId) => {
+  $.ajax({
+    type: "get",
+    url: "query/showProvinces.php",
+    success: function (response) {
+      const { provincesObj } = JSON.parse(response);
+      showDistricts(provincesObj[0].id);
+      let html = "";
+      provincesObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (provinceId == element.id) {
+          html += "selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+      $("#editProvinces").append(html);
+      showInfoDistrict(provinceId);
+    },
+  });
 };
 
 const showInfo = (id) => {
@@ -112,6 +259,9 @@ const showInfo = (id) => {
       $("#editInformerTel").val(new_data.informerTel);
       $("#editRelation").val(new_data.relation);
       $("#idForEdit").val(new_data.id);
+      $(".canEdit").prop("disabled", true);
+      showInfoProvince(new_data.provinceId);
+      showInfoSubDistrict(new_data.districtId, new_data.subDistrictId);
     },
   });
 };
@@ -123,7 +273,6 @@ const calDay = (date) => {
     new_data.forEach((element) => {
       if (date == element.date) {
         day = element;
-        console.log(day);
       }
     });
     $("#birthDay").val(`${day.weekDay}`);
@@ -262,35 +411,47 @@ $("#save").click(function () {
       $("#relation").removeClass("border border-danger");
     }
   } else {
-    $.ajax({
-      type: "POST",
-      enctype: "multipart/form-data",
-      url: "query/addBaby.php",
-      data: data,
-      processData: false,
-      contentType: false,
-      cache: false,
-      success: function (data) {
-        const { status } = JSON.parse(data);
-        if (status == "true") {
-          $("#addBaby").modal("hide");
-          $("#addBabyFrom")[0].reset();
-          $(":input").removeClass("border border-danger");
-          SoloAlert.alert({
-            title: "Success!!",
-            body: "บันทึกการแจ้งเกิดเรียบร้อยแล้ว",
-            icon: "success",
-            useTransparency: true,
-          });
-        } else {
-          SoloAlert.alert({
-            title: "ERROR!!",
-            body: "ไม่สามารถบันทึกข้อมูลได้",
-            icon: "error",
-            useTransparency: true,
-          });
-        }
-      },
-    });
+    addBaby(data);
   }
 });
+
+const addBaby = (data) => {
+  $.ajax({
+    type: "POST",
+    enctype: "multipart/form-data",
+    url: "query/addBaby.php",
+    data: data,
+    processData: false,
+    contentType: false,
+    cache: false,
+    success: function (data) {
+      const { status } = JSON.parse(data);
+      if (status == "true") {
+        $("#addBaby").modal("hide");
+        $("#addBabyFrom")[0].reset();
+        $(":input").removeClass("border border-danger");
+        SoloAlert.alert({
+          title: "Success!!",
+          body: "บันทึกการแจ้งเกิดเรียบร้อยแล้ว",
+          icon: "success",
+          useTransparency: true,
+          onOk: () => {
+            table.destroy();
+            $("#tbody").children().remove();
+            showAllBaby();
+          },
+        });
+      } else {
+        SoloAlert.alert({
+          title: "ERROR!!",
+          body: "ไม่สามารถบันทึกข้อมูลได้",
+          icon: "error",
+          useTransparency: true,
+          // onOk: () =>{
+          //   $("#addBaby").modal("hide");
+          // }
+        });
+      }
+    },
+  });
+};

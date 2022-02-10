@@ -21,11 +21,8 @@ $address = $_POST['address'];
 $informerName = $_POST['informerName'];
 $informerTel = $_POST['informerTel'];
 $relation = $_POST['relation'];
+$subDistrictId = $_POST['districts'];
 
-// echo $prename."<br>".$firstName."<br>".$lastName."<br>".$birthDate."<br>".$weight."<br>".$birthDay."<br>".$lunarPhase."<br>".
-// $thaiMonth."<br>".$thaiYears."<br>".$preNameFather."<br>".$firstNameFather."<br>".$lastNameFather."<br>".$preNameMother.
-// "<br>".$firstNameMother."<br>".$lastNameMother."<br>".$cidFather."<br>".$cidMother."<br>".$address."<br>".$informerName.
-// "<br>".$informerTel."<br>".$relation."<br>";
 
 $sql = "INSERT INTO
 `birth`(
@@ -49,7 +46,8 @@ $sql = "INSERT INTO
     `address`,
     `informerName`,
     `informerTel`,
-    `relation`
+    `relation`,
+    `subDistrict`
 )
 VALUES (
     '$prename',
@@ -72,17 +70,16 @@ VALUES (
     '$address',
     '$informerName',
     '$informerTel',
-    '$relation'
+    '$relation',
+    '$subDistrictId'
 )";
 
-// echo $sql;
-// $result = mysqli_query($conn,$sql);
-// if($result){
-//   echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);
-// }else{
-//   echo json_encode(array("status"=>"false"),JSON_UNESCAPED_UNICODE);
-// }
-// mysqli_close($conn);
+$result = mysqli_query($conn,$sql);
+if($result){
+  echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);
+}else{
+  echo json_encode(array("status"=>"false"),JSON_UNESCAPED_UNICODE);
+}
+mysqli_close($conn);
 
-echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);
 ?>

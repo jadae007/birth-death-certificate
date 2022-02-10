@@ -8,6 +8,9 @@
 <link href="./assets/css/mdb.min.css" rel="stylesheet" />
 <!-- DataTables -->
 <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.min.css"/>
+<!-- select2 -->
+<!-- <link href="./assets/css/select2.min.css" rel="stylesheet" /> -->
+
 
 <style>
   body {

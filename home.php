@@ -5,13 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
+  <title>บันทึกการแจ้งเกิด</title>
   <?php
   require('mdbCSS.php');
   require('mdbJS.php');
   ?>
-
 </head>
 
 <body>
@@ -93,8 +91,8 @@
                   </div>
                   <div class="col-2">
                     <label for="birthDay">วัน</label>
-                    <select class="form-select" aria-label="Default select example" id="birthDay" name="birthDay">
-                      <option value="0"></option>
+                    <select class="form-select" id="birthDay" name="birthDay">
+                      <option value="0" ></option>
                       <option value="จันทร์">จันทร์</option>
                       <option value="อังคาร">อังคาร</option>
                       <option value="พุธ">พุธ</option>
@@ -219,8 +217,31 @@
                 <hr>
                 <div class="row mb-2">
                   <div class="col-6">
-                    <label for="address">ที่อยู่</label>
-                    <textarea class="form-control" id="address" name="address" rows="6"></textarea>
+                   <div class="row">
+                   <label for="address">ที่อยู่</label>
+                    <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                   </div>
+                   <div class="row">
+                    <div class="col-3 mt-1">
+                    <label for="provinces">จังหวัด</label>
+                    <select class="form-select" aria-label="Default select example" name="provinces" id="provinces">
+                    </select>
+                    </div>
+                    <div class="col-3 mt-1">
+                    <label for="amphures">อำเภอ</label>
+                    <select class="form-select" aria-label="Default select example" name="amphures" id="amphures">
+                    </select>
+                    </div>
+                    <div class="col-3 mt-1">
+                    <label for="districts">ตำบล/เขต</label>
+                    <select class="form-select" aria-label="Default select example" name="districts" id="districts">
+                    </select>
+                    </div>
+                    <div class="col-3 mt-1">
+                    <label for="zipCode">รหัสไปรษณีย์</label>
+                    <input type="text" id="zipCode" name="zipCode" style="height: 39px;" class="form-control" placeholder="รหัสไปรษณีย์">
+                    </div>
+                   </div>
                   </div>
                   <div class="col-6">
                     <label for="informerName">ชื่อผู้แจ้ง</label>
@@ -259,34 +280,34 @@
                 <input type="hidden" name="idForEdit" id="idForEdit">
                 <div class="row mt-2 mb-2">
                   <div class="col-2">
-                    <label for="prename">คำนำหน้า</label>
-                    <select class="form-select" aria-label="Default select example" name="editPrename" id="editPrename">
+                    <label for="editPrename">คำนำหน้า</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editPrename" id="editPrename">
                       <option value="ด.ช." selected="">ด.ช.</option>
                       <option value="ด.ญ.">ด.ญ.</option>
                     </select>
                   </div>
                   <div class="col-5">
                     <label for="firstName">ชื่อ</label>
-                    <input type="text" id="editFirstName" name="editFirstName" class="form-control" placeholder="ชื่อ">
+                    <input type="text" id="editFirstName" name="editFirstName" class="form-control canEdit" placeholder="ชื่อ">
                   </div>
                   <div class="col-5">
                     <label for="lastName">นามสกุล</label>
-                    <input type="text" id="editLastName" name="editLastName" class="form-control" placeholder="นามสกุล">
+                    <input type="text" id="editLastName" name="editLastName" class="form-control canEdit" placeholder="นามสกุล">
                   </div>
                 </div>
 
                 <div class="row mb-4 mt-2">
                   <div class="col-3">
-                    <label for="birthDate">วันเกิด</label>
-                    <input type="datetime-local" id="editBirthDate" name="editBirthDate" class="form-control">
+                    <label for="editBirthDate">วันเกิด</label>
+                    <input type="datetime-local" id="editBirthDate" name="editBirthDate" class="form-control canEdit">
                   </div>
                   <div class="col-2">
                     <label for="weight">น้ำหนัก</label>
-                    <input type="text" id="editWeight" name="editWeight" class="form-control" placeholder="น้ำหนัก">
+                    <input type="text" id="editWeight" name="editWeight" class="form-control canEdit" placeholder="น้ำหนัก">
                   </div>
                   <div class="col-2">
-                    <label for="birthDay">วัน</label>
-                    <select class="form-select" aria-label="Default select example" id="editBirthDay" name="editBirthDay">
+                    <label for="editBirthDay">วัน</label>
+                    <select class="form-select canEdit" aria-label="Default select example" id="editBirthDay" name="editBirthDay">
                       <option value="0"></option>
                       <option value="จันทร์">จันทร์</option>
                       <option value="อังคาร">อังคาร</option>
@@ -298,8 +319,8 @@
                     </select>
                   </div>
                   <div class="col-2">
-                    <label for="lunarPhase">ข้างขึ้น ข้างแรม</label>
-                    <select class="form-select" aria-label="Default select example" name="editLunarPhase" id="editLunarPhase">
+                    <label for="editLunarPhase">ข้างขึ้น ข้างแรม</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editLunarPhase" id="editLunarPhase">
                       <option value="0"></option>
                       <option value="ขึ้น 1">ขึ้น 1</option>
                       <option value="ขึ้น 2">ขึ้น 2</option>
@@ -334,8 +355,8 @@
                     </select>
                   </div>
                   <div class="col-1">
-                    <label for="thaiMonth">เดือน</label>
-                    <select class="form-select" aria-label="Default select example" name="editThaiMonth" id="editThaiMonth">
+                    <label for="editThaiMonth">เดือน</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editThaiMonth" id="editThaiMonth">
                       <option value="0"></option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -353,8 +374,8 @@
                     </select>
                   </div>
                   <div class="col-2">
-                    <label for="thaiYears">ปี</label>
-                    <select class="form-select" aria-label="Default select example" name="editThaiYears" id="editThaiYears">
+                    <label for="editThaiYears">ปี</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editThaiYears" id="editThaiYears">
                       <option value="0"></option>
                       <option value="ชวด">ชวด</option>
                       <option value="ฉลู">ฉลู</option>
@@ -374,60 +395,84 @@
                 <hr>
                 <div class="row mt-2 mb-2" for="family">
                   <div class="col-2">
-                    <label for="preNameFather">คำนำหน้า (บิดา)</label>
-                    <input type="text" id="editPreNameFather" name="editPreNameFather" class="form-control" placeholder="คำนำหน้า">
+                    <label for="editPreNameFather">คำนำหน้า (บิดา)</label>
+                    <input type="text" id="editPreNameFather" name="editPreNameFather" class="form-control canEdit" placeholder="คำนำหน้า">
                   </div>
                   <div class="col-2">
-                    <label for="firstNameFather">ชื่อ</label>
-                    <input type="text" id="editFirstNameFather" name="editFirstNameFather" class="form-control" placeholder="ชื่อ">
+                    <label for="editFirstNameFather">ชื่อ</label>
+                    <input type="text" id="editFirstNameFather" name="editFirstNameFather" class="form-control canEdit" placeholder="ชื่อ">
                   </div>
                   <div class="col-2">
-                    <label for="lastNameFather">นามสกุล</label>
-                    <input type="text" id="editLastNameFather" name="editLastNameFather" class="form-control" placeholder="นามสกุล">
+                    <label for="editLastNameFather">นามสกุล</label>
+                    <input type="text" id="editLastNameFather" name="editLastNameFather" class="form-control canEdit" placeholder="นามสกุล">
                   </div>
                   <div class="col-2">
-                    <label for="preNameMother">คำนำหน้าชื่อ (มารดา)</label>
-                    <input type="text" id="editPreNameMother" name="editPreNameMother" class="form-control" placeholder="คำนำหน้า">
+                    <label for="editPreNameMother">คำนำหน้าชื่อ (มารดา)</label>
+                    <input type="text" id="editPreNameMother" name="editPreNameMother" class="form-control canEdit" placeholder="คำนำหน้า">
                   </div>
                   <div class="col-2">
-                    <label for="firstNameMother">ชื่อ</label>
-                    <input type="text" id="editFirstNameMother" name="editFirstNameMother" class="form-control" placeholder="ชื่อ">
+                    <label for="editFirstNameMother">ชื่อ</label>
+                    <input type="text" id="editFirstNameMother" name="editFirstNameMother" class="form-control canEdit" placeholder="ชื่อ">
                   </div>
                   <div class="col-2">
-                    <label for="lastNameMother">นามสกุล</label>
-                    <input type="text" id="editLastNameMother" name="editLastNameMother" class="form-control" placeholder="นามสกุล">
+                    <label for="editLastNameMother">นามสกุล</label>
+                    <input type="text" id="editLastNameMother" name="editLastNameMother" class="form-control canEdit" placeholder="นามสกุล">
                   </div>
                 </div>
                 <div class="row mb-4 mt-2">
                   <div class="col-6">
-                    <label for="cidFather">เลขบัตร ปชช. บิดา</label>
-                    <input type="text" id="editCidFather" name="editCidFather" class="form-control" placeholder="เลขบัตร ปชช. บิดา">
+                    <label for="editCidFather">เลขบัตร ปชช. บิดา</label>
+                    <input type="text" id="editCidFather" name="editCidFather" class="form-control canEdit" placeholder="เลขบัตร ปชช. บิดา">
                   </div>
                   <div class="col-6">
-                    <label for="cidMother">เลขบัตร ปชช. มารดา</label>
-                    <input type="text" id="editCidMother" name="editCidMother" class="form-control" placeholder="เลขบัตร ปชช. มารดา">
+                    <label for="editCidMother">เลขบัตร ปชช. มารดา</label>
+                    <input type="text" id="editCidMother" name="editCidMother" class="form-control canEdit" placeholder="เลขบัตร ปชช. มารดา">
                   </div>
                 </div>
                 <hr>
                 <div class="row mb-2">
                   <div class="col-6">
-                    <label for="address">ที่อยู่</label>
-                    <textarea class="form-control" id="editAddress" name="editAddress" rows="6"></textarea>
+                  <div class="row">
+                    <label for="editAddress">ที่อยู่</label>
+                    <textarea class="form-control canEdit" id="editAddress" name="editAddress" rows="3"></textarea>
+                    </div>
+                    <div class="row">
+                    <div class="col-3 mt-1">
+                    <label for="provinces">จังหวัด</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editProvinces" id="editProvinces">
+                    </select>
+                    </div>
+                    <div class="col-3 mt-1">
+                    <label for="amphures">อำเภอ</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editAmphures" id="editAmphures">
+                    </select>
+                    </div>
+                    <div class="col-3 mt-1">
+                    <label for="districts">ตำบล/เขต</label>
+                    <select class="form-select canEdit" aria-label="Default select example" name="editDistricts" id="editDistricts">
+                    </select>
+                    </div>
+                    <div class="col-3 mt-1">
+                    <label for="zipCode">รหัสไปรษณีย์</label>
+                    <input type="text" id="editZipCode" name="editZipCode" style="height: 39px;" class="form-control canEdit" placeholder="รหัสไปรษณีย์">
+                    </div>
+                   </div>
                   </div>
+
                   <div class="col-6">
-                    <label for="informerName">ชื่อผู้แจ้ง</label>
-                    <input type="text" id="editInformerName" name="editInformerName" class="form-control" placeholder="ชื่อผู้แจ้ง">
-                    <label for="informerTel">เบอร์โทร</label>
-                    <input type="text" id="editInformerTel" name="editInformerTel" class="form-control" placeholder="เบอร์โทร" maxlength="10">
-                    <label for="ความสัมพันธ์">ความสัมพันธ์</label>
-                    <input type="text" id="editRelation" name="editRelation" class="form-control" placeholder="ความสัมพันธ์">
+                    <label for="editInformerName">ชื่อผู้แจ้ง</label>
+                    <input type="text" id="editInformerName" name="editInformerName" class="form-control canEdit" placeholder="ชื่อผู้แจ้ง">
+                    <label for="editInformerTel">เบอร์โทร</label>
+                    <input type="text" id="editInformerTel" name="editInformerTel" class="form-control canEdit" placeholder="เบอร์โทร" maxlength="10">
+                    <label for="editRelation">ความสัมพันธ์</label>
+                    <input type="text" id="editRelation" name="editRelation" class="form-control canEdit" placeholder="ความสัมพันธ์">
                   </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" id="editHideModal" class="btn btn-danger" data-mdb-dismiss="modal">ปิด</button>
-              <button type="button" id="editSave" class="btn btn-warning">แก้ไข</button>
+              <button type="button" id="editSave" value="edit" class="btn btn-warning">แก้ไข</button>
             </div>
           </div>
         </div>
