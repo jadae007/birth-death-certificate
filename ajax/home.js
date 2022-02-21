@@ -4,6 +4,17 @@ $(document).ready(function () {
   showAllBaby();
   showProvinces();
 });
+
+$("#editProvinces").change(function (e) { 
+  e.preventDefault();
+  showInfoProvince(e.currentTarget.value)
+});
+$("#editAmphures").change(function (e) { 
+  e.preventDefault();
+  showInfoSubDistrict(e.currentTarget.value);
+  
+});
+
 $("#provinces").change(function () {
   $("#amphures").children().remove();
   $("#districts").children().remove();
@@ -19,6 +30,14 @@ $("#districts").change(function () {
   getZipCode.forEach((element) => {
     if ($(this).val() == element.id) {
       $("#zipCode").val(element.zip_code);
+    }
+  });
+});
+
+$("#editDistricts").change(function () {
+  getZipCode.forEach((element) => {
+    if ($(this).val() == element.id) {
+      $("#editZipCode").val(element.zip_code);
     }
   });
 });
@@ -47,9 +66,10 @@ $("#editSave").click(function () {
     $(".canEdit").prop("disabled", false);
   } else {
     $(this).val("edit");
+    editBaby();
     $(".canEdit").prop("disabled", true);
   }
-  // editBaby();
+
 });
 
 $("#birthDate").change(function () {
@@ -94,9 +114,21 @@ const showAllBaby = () => {
 };
 
 const editBaby = () => {
-  // let form = $("#showBabyFrom")[0];
-  // let data = new FormData(form);
-  // console.log(form);
+   let form = $("#showBabyFrom")[0];
+   let data = new FormData(form);
+   console.log(form);
+   $.ajax({
+    enctype: 'multipart/form-data',
+     type: "POST",
+     url: "query/editBaby.php",
+     data: data,
+     processData: false,
+     dataType: false,
+     cache:false,
+     success: function (response) {
+      console.log(response);
+     }
+   });
 };
 
 const showSubDistricts = (districtId) => {
@@ -165,6 +197,7 @@ const showInfoSubDistrict = (districtId, subDistrictId) => {
     },
     url: "query/showSubDistricts.php",
     success: function (response) {
+      $("#editDistricts").children().remove();
       const { subDistrictsObj } = JSON.parse(response);
       let html = "";
       subDistrictsObj.forEach((element) => {
@@ -191,6 +224,7 @@ const showInfoDistrict = (provinceId) => {
     url: "query/showDistricts.php",
     success: function (response) {
       const { districtsObj } = JSON.parse(response);
+      $("#editAmphures").children().remove()
       let html = "";
       districtsObj.forEach((element) => {
         html += `<option value="${element.id}"`;
@@ -199,7 +233,7 @@ const showInfoDistrict = (provinceId) => {
         }
         html += `>${element.name_in_thai}</option>`;
       });
-      //  showInfoSubDistricts(districtsObj[0].id)
+      showInfoSubDistrict(districtsObj[0].id)
       $("#editAmphures").append(html);
     },
   });
@@ -236,7 +270,6 @@ const showInfo = (id) => {
     },
     success: function (data) {
       const new_data = JSON.parse(data);
-      console.log(new_data);
       $("#editPrename").val(new_data.prename);
       $("#editFirstName").val(new_data.firstName);
       $("#editLastName").val(new_data.lastName);
