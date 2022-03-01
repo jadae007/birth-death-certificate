@@ -14,9 +14,8 @@
           <a class="nav-link " aria-current="page" href="home.php"><i class="fas fa-baby"></i> แจ้งเกิด</a>
         </li>
         <li class="nav-item" id="deadMenu">
-          <a class="nav-link " aria-current="page" href="dead.php"><i class="fas fa-skull-crossbones"></i> แจ้งตาย</a>
+          <a class="nav-link " aria-current="page" href="death.php"><i class="fas fa-skull-crossbones"></i> แจ้งตาย</a>
         </li>
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
           <i class="fas fa-user"></i> user

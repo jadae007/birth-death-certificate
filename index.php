@@ -1,3 +1,7 @@
+<?php 
+http_response_code(301);
+header("Location:home.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 

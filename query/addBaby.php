@@ -1,5 +1,6 @@
 <?php 
 require_once('connect.php');
+$no = $_POST['no'];
 $prename = $_POST['prename'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -26,6 +27,7 @@ $subDistrictId = $_POST['districts'];
 
 $sql = "INSERT INTO
 `birth`(
+    `no`,
     `prename`,
     `firstName`,
     `lastName`,
@@ -50,6 +52,7 @@ $sql = "INSERT INTO
     `subDistrict`
 )
 VALUES (
+    '$no',
     '$prename',
     '$firstName',
     '$lastName',

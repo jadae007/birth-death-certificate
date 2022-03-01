@@ -5,14 +5,13 @@ $(document).ready(function () {
   showProvinces();
 });
 
-$("#editProvinces").change(function (e) { 
+$("#editProvinces").change(function (e) {
   e.preventDefault();
-  showInfoProvince(e.currentTarget.value)
+  showInfoProvince(e.currentTarget.value);
 });
-$("#editAmphures").change(function (e) { 
+$("#editAmphures").change(function (e) {
   e.preventDefault();
   showInfoSubDistrict(e.currentTarget.value);
-  
 });
 
 $("#provinces").change(function () {
@@ -54,10 +53,12 @@ $("#btnX").click(function () {
 $("#editHideModal").click(function () {
   $(":input").removeClass("border border-danger");
   $("#showBabyFrom")[0].reset();
+  $("#editSave").val("edit");
 });
 $("#editBtnX").click(function () {
   $(":input").removeClass("border border-danger");
   $("#showBabyFrom")[0].reset();
+  $("#editSave").val("edit");
 });
 
 $("#editSave").click(function () {
@@ -67,14 +68,16 @@ $("#editSave").click(function () {
   } else {
     $(this).val("edit");
     editBaby();
-    $(".canEdit").prop("disabled", true);
   }
-
 });
 
 $("#birthDate").change(function () {
   let selectDate = $(this).val().split("T")[0];
   calDay(selectDate);
+});
+$("#editBirthDate").change(function () {
+  let selectDate = $(this).val().split("T")[0];
+  calDay(selectDate, "edit");
 });
 
 const showAllBaby = () => {
@@ -83,10 +86,13 @@ const showAllBaby = () => {
     url: "query/showAllBaby.php",
     success: function (data) {
       const { babyObj } = JSON.parse(data);
+      if(babyObj != null){
+
+
       babyObj.forEach((element) => {
         $("#tbody").append(`
       <tr>
-      <th scope="row">${element.id}</th>
+      <th scope="row">${element.no}</th>
       <td>${element.prename}${element.firstName} ${element.lastName}</td>
       <td>${element.birthDateTime.split(" ")[0]}</td>
       <td>${element.weight}</td>
@@ -108,27 +114,61 @@ const showAllBaby = () => {
     </tr>
       `);
       });
-      table = $("#babyTable").DataTable();
+      table = $("#babyTable").DataTable({
+        dom: "Bfrtip",
+        buttons: [
+          {
+            extend: "excelHtml5",
+            className: "btn btn-success",
+          },
+        ],
+      });
+    }else{
+      $("#contents").children().remove();
+      $("#contents").html("<h1 class='text-center'>ไม่มีข้อมูล</h1>")
+    }
     },
   });
 };
 
 const editBaby = () => {
-   let form = $("#showBabyFrom")[0];
-   let data = new FormData(form);
-   console.log(form);
-   $.ajax({
-    enctype: 'multipart/form-data',
-     type: "POST",
-     url: "query/editBaby.php",
-     data: data,
-     processData: false,
-     dataType: false,
-     cache:false,
-     success: function (response) {
-      console.log(response);
-     }
-   });
+  let form = $("#showBabyFrom")[0];
+  let data = new FormData(form);
+  //    for (var value of data.values()) {
+  //     console.log(value);
+  //  }
+  $.ajax({
+    type: "POST",
+    enctype: "multipart/form-data",
+    url: "query/editBaby.php",
+    data: data,
+    processData: false,
+    contentType: false,
+    cache: false,
+    beforeSend: function () {
+      $(".canEdit").prop("disabled", true);
+    },
+    success: function (response) {
+      const { status } = JSON.parse(response);
+      if (status == "true") {
+        SoloAlert.alert({
+          title: "Success!!",
+          body: "แก้ไขข้อมูลเรียบร้อยแล้ว",
+          icon: "success",
+          useTransparency: true,
+          onOk: () => {
+            table.destroy();
+            $("#tbody").children().remove();
+            showAllBaby();
+            $("#showBaby").modal("hide");
+            $(":input").removeClass("border border-danger");
+            $("#showBabyFrom")[0].reset();
+          },
+        });
+      } else {
+      }
+    },
+  });
 };
 
 const showSubDistricts = (districtId) => {
@@ -186,7 +226,21 @@ const showProvinces = () => {
   });
 };
 const deleteBaby = (id) => {
-  console.log("delete" + id);
+  SoloAlert.confirm({
+    title:"แน่ใจหรือไม่?",
+    body:"คุณแน่ใจว่าต้องการจะลบหรือไม่?",
+    useTransparency: true,
+    onOk : ()=>{
+      $.ajax({
+        type: "post",
+        url: "query/deleteBaby.php",
+        id,
+        success: function (response) {
+           console.log(response)
+        }
+      });
+    },
+  })
 };
 
 const showInfoSubDistrict = (districtId, subDistrictId) => {
@@ -224,7 +278,7 @@ const showInfoDistrict = (provinceId) => {
     url: "query/showDistricts.php",
     success: function (response) {
       const { districtsObj } = JSON.parse(response);
-      $("#editAmphures").children().remove()
+      $("#editAmphures").children().remove();
       let html = "";
       districtsObj.forEach((element) => {
         html += `<option value="${element.id}"`;
@@ -233,7 +287,7 @@ const showInfoDistrict = (provinceId) => {
         }
         html += `>${element.name_in_thai}</option>`;
       });
-      showInfoSubDistrict(districtsObj[0].id)
+      showInfoSubDistrict(districtsObj[0].id);
       $("#editAmphures").append(html);
     },
   });
@@ -299,7 +353,9 @@ const showInfo = (id) => {
   });
 };
 
-const calDay = (date) => {
+const calDay = (date, modal) => {
+  console.log(date);
+  console.log(modal);
   $.getJSON("json/2022.json", function (data) {
     const new_data = data.year2022;
     let day = {};
@@ -308,10 +364,17 @@ const calDay = (date) => {
         day = element;
       }
     });
-    $("#birthDay").val(`${day.weekDay}`);
-    $("#lunarPhase").val(`${day.moonPhase}`);
-    $("#thaiMonth").val(`${day.thaiMonth}`);
-    $("#thaiYears").val(`${day.thaiYear}`);
+    if (modal == "edit") {
+      $("#editBirthDay").val(`${day.weekDay}`);
+      $("#editLunarPhase").val(`${day.moonPhase}`);
+      $("#editThaiMonth").val(`${day.thaiMonth}`);
+      $("#editThaiYears").val(`${day.thaiYear}`);
+    } else {
+      $("#birthDay").val(`${day.weekDay}`);
+      $("#lunarPhase").val(`${day.moonPhase}`);
+      $("#thaiMonth").val(`${day.thaiMonth}`);
+      $("#thaiYears").val(`${day.thaiYear}`);
+    }
   }).fail(function () {
     console.log("An error has occurred.");
   });

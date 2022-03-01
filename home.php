@@ -27,8 +27,8 @@
     <div class="row">
       <div class="col-1">
       </div>
-      <div class="col-10">
-        <table class="table" id="babyTable">
+      <div class="col-10" id="contents">
+        <table class="table table-hover" id="babyTable">
           <thead>
             <tr class="text-center">
               <th scope="col">ลำดับ</th>
@@ -63,6 +63,11 @@
             <div class="container-fluid">
               <form method="POST" id="addBabyFrom" enctype="multipart/form-data">
                 <div class="row mt-2 mb-2">
+                  <div class="row">
+                  <div class="col-2">
+                    <input class="form-control mb-3" type="text" name="no" id="no" placeholder="ลำดับ">
+                  </div>
+                  </div>
                   <div class="col-2">
                     <label for="prename">คำนำหน้า</label>
                     <select class="form-select" aria-label="Default select example" name="prename" id="prename">
@@ -87,12 +92,12 @@
                   </div>
                   <div class="col-2">
                     <label for="weight">น้ำหนัก</label>
-                    <input type="text" id="weight" name="weight" class="form-control" placeholder="น้ำหนัก">
+                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" id="weight" name="weight" class="form-control" placeholder="น้ำหนัก">
                   </div>
                   <div class="col-2">
                     <label for="birthDay">วัน</label>
                     <select class="form-select" id="birthDay" name="birthDay">
-                      <option value="0" ></option>
+                      <option value="0"></option>
                       <option value="จันทร์">จันทร์</option>
                       <option value="อังคาร">อังคาร</option>
                       <option value="พุธ">พุธ</option>
@@ -207,47 +212,47 @@
                 <div class="row mb-4 mt-2">
                   <div class="col-6">
                     <label for="cidFather">เลขบัตร ปชช. บิดา</label>
-                    <input type="text" id="cidFather" name="cidFather" class="form-control" placeholder="เลขบัตร ปชช. บิดา">
+                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" id="cidFather" name="cidFather" class="form-control" placeholder="เลขบัตร ปชช. บิดา">
                   </div>
                   <div class="col-6">
                     <label for="cidMother">เลขบัตร ปชช. มารดา</label>
-                    <input type="text" id="cidMother" name="cidMother" class="form-control" placeholder="เลขบัตร ปชช. มารดา">
+                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" id="cidMother" name="cidMother" class="form-control" placeholder="เลขบัตร ปชช. มารดา">
                   </div>
                 </div>
                 <hr>
                 <div class="row mb-2">
                   <div class="col-6">
-                   <div class="row">
-                   <label for="address">ที่อยู่</label>
-                    <textarea class="form-control" id="address" name="address" rows="3"></textarea>
-                   </div>
-                   <div class="row">
-                    <div class="col-3 mt-1">
-                    <label for="provinces">จังหวัด</label>
-                    <select class="form-select" aria-label="Default select example" name="provinces" id="provinces">
-                    </select>
+                    <div class="row">
+                      <label for="address">ที่อยู่</label>
+                      <textarea class="form-control" id="address" name="address" rows="3"></textarea>
                     </div>
-                    <div class="col-3 mt-1">
-                    <label for="amphures">อำเภอ</label>
-                    <select class="form-select" aria-label="Default select example" name="amphures" id="amphures">
-                    </select>
+                    <div class="row">
+                      <div class="col-3 mt-1">
+                        <label for="provinces">จังหวัด</label>
+                        <select class="form-select" aria-label="Default select example" name="provinces" id="provinces">
+                        </select>
+                      </div>
+                      <div class="col-3 mt-1">
+                        <label for="amphures">อำเภอ</label>
+                        <select class="form-select" aria-label="Default select example" name="amphures" id="amphures">
+                        </select>
+                      </div>
+                      <div class="col-3 mt-1">
+                        <label for="districts">ตำบล/เขต</label>
+                        <select class="form-select" aria-label="Default select example" name="districts" id="districts">
+                        </select>
+                      </div>
+                      <div class="col-3 mt-1">
+                        <label for="zipCode">รหัสไปรษณีย์</label>
+                        <input type="text" id="zipCode" name="zipCode" style="height: 39px;" class="form-control" placeholder="รหัสไปรษณีย์">
+                      </div>
                     </div>
-                    <div class="col-3 mt-1">
-                    <label for="districts">ตำบล/เขต</label>
-                    <select class="form-select" aria-label="Default select example" name="districts" id="districts">
-                    </select>
-                    </div>
-                    <div class="col-3 mt-1">
-                    <label for="zipCode">รหัสไปรษณีย์</label>
-                    <input type="text" id="zipCode" name="zipCode" style="height: 39px;" class="form-control" placeholder="รหัสไปรษณีย์">
-                    </div>
-                   </div>
                   </div>
                   <div class="col-6">
                     <label for="informerName">ชื่อผู้แจ้ง</label>
                     <input type="text" id="informerName" name="informerName" class="form-control" placeholder="ชื่อผู้แจ้ง">
                     <label for="informerTel">เบอร์โทร</label>
-                    <input type="text" id="informerTel" name="informerTel" class="form-control" placeholder="เบอร์โทร" maxlength="10">
+                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" id="informerTel" name="informerTel" class="form-control" placeholder="เบอร์โทร" maxlength="10">
                     <label for="ความสัมพันธ์">ความสัมพันธ์</label>
                     <input type="text" id="relation" name="relation" class="form-control" placeholder="ความสัมพันธ์">
                   </div>
@@ -265,7 +270,7 @@
   </div>
 
 
-   <!-- Modal Edit -->
+  <!-- Modal Edit -->
   <div class="modal fade" id="showBaby" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="showBabyLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" style="max-width: 80%;">
       <div class="modal-content">
@@ -275,8 +280,8 @@
         </div>
         <div class="modal-body">
           <div class="modal-body">
-            <div class="container-fluid">
-              <form method="POST" id="showBabyFrom" enctype="multipart/form-data">
+            <form method="POST" id="showBabyFrom" enctype="multipart/form-data">
+              <div class="container-fluid">
                 <input type="hidden" name="idForEdit" id="idForEdit">
                 <div class="row mt-2 mb-2">
                   <div class="col-2">
@@ -432,33 +437,32 @@
                 <hr>
                 <div class="row mb-2">
                   <div class="col-6">
-                  <div class="row">
-                    <label for="editAddress">ที่อยู่</label>
-                    <textarea class="form-control canEdit" id="editAddress" name="editAddress" rows="3"></textarea>
+                    <div class="row">
+                      <label for="editAddress">ที่อยู่</label>
+                      <textarea class="form-control canEdit" id="editAddress" name="editAddress" rows="3"></textarea>
                     </div>
                     <div class="row">
-                    <div class="col-3 mt-1">
-                    <label for="provinces">จังหวัด</label>
-                    <select class="form-select canEdit" aria-label="Default select example" name="editProvinces" id="editProvinces">
-                    </select>
+                      <div class="col-3 mt-1">
+                        <label for="provinces">จังหวัด</label>
+                        <select class="form-select canEdit" aria-label="Default select example" name="editProvinces" id="editProvinces">
+                        </select>
+                      </div>
+                      <div class="col-3 mt-1">
+                        <label for="amphures">อำเภอ</label>
+                        <select class="form-select canEdit" aria-label="Default select example" name="editAmphures" id="editAmphures">
+                        </select>
+                      </div>
+                      <div class="col-3 mt-1">
+                        <label for="districts">ตำบล/เขต</label>
+                        <select class="form-select canEdit" aria-label="Default select example" name="editDistricts" id="editDistricts">
+                        </select>
+                      </div>
+                      <div class="col-3 mt-1">
+                        <label for="zipCode">รหัสไปรษณีย์</label>
+                        <input type="text" id="editZipCode" name="editZipCode" style="height: 39px;" class="form-control canEdit" placeholder="รหัสไปรษณีย์">
+                      </div>
                     </div>
-                    <div class="col-3 mt-1">
-                    <label for="amphures">อำเภอ</label>
-                    <select class="form-select canEdit" aria-label="Default select example" name="editAmphures" id="editAmphures">
-                    </select>
-                    </div>
-                    <div class="col-3 mt-1">
-                    <label for="districts">ตำบล/เขต</label>
-                    <select class="form-select canEdit" aria-label="Default select example" name="editDistricts" id="editDistricts">
-                    </select>
-                    </div>
-                    <div class="col-3 mt-1">
-                    <label for="zipCode">รหัสไปรษณีย์</label>
-                    <input type="text" id="editZipCode" name="editZipCode" style="height: 39px;" class="form-control canEdit" placeholder="รหัสไปรษณีย์">
-                    </div>
-                   </div>
                   </div>
-
                   <div class="col-6">
                     <label for="editInformerName">ชื่อผู้แจ้ง</label>
                     <input type="text" id="editInformerName" name="editInformerName" class="form-control canEdit" placeholder="ชื่อผู้แจ้ง">
@@ -468,12 +472,12 @@
                     <input type="text" id="editRelation" name="editRelation" class="form-control canEdit" placeholder="ความสัมพันธ์">
                   </div>
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="editHideModal" class="btn btn-danger" data-mdb-dismiss="modal">ปิด</button>
-              <button type="button" id="editSave" value="edit" class="btn btn-warning">แก้ไข</button>
-            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="editHideModal" class="btn btn-danger" data-mdb-dismiss="modal">ปิด</button>
+                <button type="button" id="editSave" value="edit" class="btn btn-warning">แก้ไข</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
