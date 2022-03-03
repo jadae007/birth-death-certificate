@@ -1,17 +1,26 @@
 <?php 
 $no = $_POST['no'];
+$preName = $_POST['preName'];
 $firstName = $_POST['firstName'];
+$department = $_POST['department'];
 $lastName = $_POST['lastName'];
+$hn = $_POST['hn'];
 $cId = $_POST['cId'];
 $sex = $_POST['sex'];
 $age = $_POST['age'];
-$nationality = $_POST['nationality'];
-$status = $_POST['status'];
-$religion = $_POST['religion'];
 $address = $_POST['address'];
 $subDistrict = $_POST['districts'];
-$deathDate = $_POST['deathDate'];
+$deathDate = date("Y-m-d H:i:s", strtotime($_POST['deathDate']));
+$department = $_POST['department'];
 $doctorName = $_POST['doctorName'];
+
+$arr = array(
+  "eng1"=>$_POST['causeOfDeathEng1'],
+  "eng2"=>$_POST['causeOfDeathEng2'],
+  "eng3"=>$_POST['causeOfDeathEng3'],
+  "eng4"=>$_POST['causeOfDeathEng4']
+);
+
 $causeOfDeathEng1 = $_POST['causeOfDeathEng1'];
 $causeOfDeathEng2 = $_POST['causeOfDeathEng2'];
 $causeOfDeathEng3 = $_POST['causeOfDeathEng3'];
@@ -22,9 +31,50 @@ $cIdInformer = $_POST['cIdInformer'];
 $telInformer = $_POST['telInformer'];
 $relation = $_POST['relation'];
 
+require('connect.php');
 
-echo $no ."<br>". $firstName  ."<br>". $lastName  ."<br>". $cId  ."<br>". $sex  ."<br>". $age  ."<br>". $nationality . 
-$status ."<br>". $religion ."<br>". $address ."<br>". $subDistrict ."<br>".
- $deathDate ."<br>". $doctorName ."<br>". $causeOfDeathEng1 ."<br>". $causeOfDeathEng2 ."<br>". $causeOfDeathEng3 
-."<br>". $causeOfDeathEng4  ."<br>". $causeOfDeathThai  ."<br>". $nameInformer  ."<br>". $telInformer  ."<br>". $relation ;
+$sql = "INSERT INTO
+`death`(
+    `no`,
+    `prename`,
+    `firstName`,
+    `lastName`,
+    `hn`,
+    `cid`,
+    `age`,
+    `sex`,
+    `address`,
+    `subDistrict`,
+    `dateDead`,
+    `department`,
+    `doctorName`,
+    `informerName`,
+    `informerCid`,
+    `informerTel`,
+    `relation`
+)
+VALUES (
+    '$no',
+    '$preName',
+    '$firstName',
+    '$department',
+    '$lastName',
+    '$hn',
+    '$cId',
+    '$age',
+    '$sex',
+    '$address',
+    '$subDistrict',
+    '$deathDate',
+    '$department',
+    '$doctorName',
+    '$nameInformer',
+    '$cIdInformer',
+    '$telInformer',
+    '$relation'
+)";
+
+echo $arr;
+// echo $sql;
+// echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);
 ?>
