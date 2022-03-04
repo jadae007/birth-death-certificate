@@ -1,35 +1,26 @@
-<?php 
-$no = $_POST['no'];
-$preName = $_POST['preName'];
-$firstName = $_POST['firstName'];
-$department = $_POST['department'];
-$lastName = $_POST['lastName'];
-$hn = $_POST['hn'];
-$cId = $_POST['cId'];
-$sex = $_POST['sex'];
-$age = $_POST['age'];
-$address = $_POST['address'];
-$subDistrict = $_POST['districts'];
+<?php
+$no = trim($_POST['no']);
+$preName = trim($_POST['preName']);
+$firstName = trim($_POST['firstName']);
+$lastName = trim($_POST['lastName']);
+$department = trim($_POST['department']);
+$hn = trim($_POST['hn']);
+$cId = trim($_POST['cId']);
+$age = trim($_POST['age']);
+$address = trim($_POST['address']);
+$subDistrict = trim($_POST['districts']);
 $deathDate = date("Y-m-d H:i:s", strtotime($_POST['deathDate']));
-$department = $_POST['department'];
-$doctorName = $_POST['doctorName'];
-
-$arr = array(
-  "eng1"=>$_POST['causeOfDeathEng1'],
-  "eng2"=>$_POST['causeOfDeathEng2'],
-  "eng3"=>$_POST['causeOfDeathEng3'],
-  "eng4"=>$_POST['causeOfDeathEng4']
-);
-
-$causeOfDeathEng1 = $_POST['causeOfDeathEng1'];
-$causeOfDeathEng2 = $_POST['causeOfDeathEng2'];
-$causeOfDeathEng3 = $_POST['causeOfDeathEng3'];
-$causeOfDeathEng4= $_POST['causeOfDeathEng4'];
-$causeOfDeathThai = $_POST['causeOfDeathThai'];
-$nameInformer = $_POST['nameInformer'];
-$cIdInformer = $_POST['cIdInformer'];
-$telInformer = $_POST['telInformer'];
-$relation = $_POST['relation'];
+$department = trim($_POST['department']);
+$doctorName = trim($_POST['doctorName']);
+$causeOfDeathEng1 = trim($_POST['causeOfDeathEng1']);
+$causeOfDeathEng2 = trim($_POST['causeOfDeathEng2']);
+$causeOfDeathEng3 = trim($_POST['causeOfDeathEng3']);
+$causeOfDeathEng4 = trim($_POST['causeOfDeathEng4']);
+$causeOfDeathThai = trim($_POST['causeOfDeathThai']);
+$nameInformer = trim($_POST['nameInformer']);
+$cIdInformer = trim($_POST['cIdInformer']);
+$telInformer = trim($_POST['telInformer']);
+$relation = trim($_POST['relation']);
 
 require('connect.php');
 
@@ -42,7 +33,6 @@ $sql = "INSERT INTO
     `hn`,
     `cid`,
     `age`,
-    `sex`,
     `address`,
     `subDistrict`,
     `dateDead`,
@@ -51,18 +41,21 @@ $sql = "INSERT INTO
     `informerName`,
     `informerCid`,
     `informerTel`,
-    `relation`
+    `relation`,
+    `causeOfDeath1`,
+    `causeOfDeath2`,
+    `causeOfDeath3`,
+    `causeOfDeath4`,
+    `causeOfDeathThai`
 )
 VALUES (
     '$no',
     '$preName',
     '$firstName',
-    '$department',
     '$lastName',
     '$hn',
     '$cId',
     '$age',
-    '$sex',
     '$address',
     '$subDistrict',
     '$deathDate',
@@ -71,10 +64,14 @@ VALUES (
     '$nameInformer',
     '$cIdInformer',
     '$telInformer',
-    '$relation'
+    '$relation',
+    '$causeOfDeathEng1',
+    '$causeOfDeathEng2',
+    '$causeOfDeathEng3',
+    '$causeOfDeathEng4',
+    '$causeOfDeathThai'
 )";
 
-echo $arr;
-// echo $sql;
-// echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);
+echo (mysqli_query($conn, $sql)) ?  json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE) :  json_encode(array("status"=>"false","errMsg"=>mysqli_error($conn)),JSON_UNESCAPED_UNICODE);
+mysqli_close($conn);
 ?>

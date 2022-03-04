@@ -1,11 +1,9 @@
 $(document).ready(function () {
-  $("#table").DataTable({
-    scrollX: true,
-    scrollY: "600px",
-  });
   $("#deadMenu a").addClass("active ");
+  showAllDeath();
   showProvinces();
 });
+
 $("#preName").keyup(function (e) { 
   let value = e.target.value
   console.log(value.length)
@@ -31,6 +29,19 @@ $("#districts").change(function () {
     }
   });
 });
+$("#xModal").click(function (e) { 
+  e.preventDefault();
+  $(":input").removeClass("border border-danger");
+  $("#fromAddDeath")[0].reset();
+});
+
+$("#cancelModal").click(function (e) { 
+  e.preventDefault();
+  $(":input").removeClass("border border-danger");
+  $("#fromAddDeath")[0].reset();
+});
+
+
 
 $("#submit").click(function (e) {
   console.log("submit")
@@ -190,6 +201,48 @@ const showSubDistricts = (districtId) => {
   });
 };
 
+const showAllDeath = () =>{
+  $.ajax({
+    type: "get",
+    url: "query/showAllDeath.php",
+    success: function (response) {
+      const {deathObj} = JSON.parse(response);
+      if(deathObj != "null"){
+       deathObj.forEach(element => {
+         $("#tbody").append(`
+         <tr>
+         <th scope="row">${element.no}</th>
+         <td>${element.prename}${element.firstName} ${element.lastName}</td>
+         <td>${element.cid}</td>
+         <td>${element.age}</td>
+         <td>${element.dateDead.split(" ")[0]}</td>
+         <td>${element.dateDead.split(" ")[1]}</td>
+         <td>${element.department}</td>
+         <td>${element.doctorName}</td>
+         <td>${element.causeOfDeathThai}</td>
+         <td>${element.informerName}</td>
+         <td>
+           <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
+           <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
+         </td>
+       </tr>
+         `);
+       });
+
+
+      }else{
+
+      }
+
+
+     table =  $("#table").DataTable({
+        scrollX: true,
+        scrollY: "600px",
+      });
+    }
+  });
+}
+
 const addDeath = (data) => {
   $.ajax({
     type: "POST",
@@ -213,7 +266,7 @@ const addDeath = (data) => {
         onOk: () => {
           table.destroy();
           $("#tbody").children().remove();
-         // showAllDeath();
+          showAllDeath();
         },
       });
     } else {

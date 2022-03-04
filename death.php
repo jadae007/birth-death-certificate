@@ -45,258 +45,6 @@
             </tr>
           </thead>
           <tbody id="tbody">
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>11223457894</td>
-              <td>30</td>
-              <td>01-01-2022</td>
-              <td>19.30</td>
-              <td>ICU MED</td>
-              <td>นายแพทย์ทดสอบ ทดสอบ</td>
-              <td>หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140<br>
-                หายใจไม่ออก 2 3 4 5 6 7 8 9 140</td>
-              <td>นายทดสอบ ทดสอบ</td>
-              <td>
-                <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-                <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
 
           </tbody>
         </table>
@@ -317,7 +65,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="deathCerLabel">บันทึกการแจ้งตาย</h5>
-          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="xModal" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form method="post" id="fromAddDeath" enctype="multipart/form-data">
@@ -445,7 +193,7 @@
               </div>
               <div class="col-3">
                 <label for="telInformer">เบอร์โทรผู้แจ้ง</label>
-                <input type="text" id="telInformer" name="telInformer" class="form-control mb-2" placeholder="เบอร์โทรผู้แจ้ง" required>
+                <input type="text" id="telInformer" name="telInformer" maxlength="10" onkeypress="return event.charCode>=48 && event.charCode<=57" class="form-control mb-2" placeholder="เบอร์โทรผู้แจ้ง" required>
               </div>
               <div class="col-3">
                 <label for="relation">ความสัมพันธ์</label>
@@ -453,7 +201,7 @@
               </div>
             </div>
             <div class="modal-footer mt-4">
-              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">ยกเลิก</button>
+              <button type="button" id="cancelModal" class="btn btn-secondary" data-mdb-dismiss="modal">ยกเลิก</button>
               <button type="submit" id="submit" class="btn btn-primary">บันทึก</button>
             </div>
           </form>
