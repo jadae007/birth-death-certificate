@@ -29,8 +29,6 @@
         }
         return check;
     });
-
-
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
            hideValidate(this);
@@ -47,13 +45,34 @@
             if($(input).val().trim() == ''){
                 return false;
             }else{
-              console.log(input)
+                let form = $("#loginForm")[0];
+                let data = new FormData(form);
+                console.log(form)
               $.ajax({
-                type: "POST",
-                url: "login.php",
-                data: "data",
+                  type: "POST",
+                  enctype: "multipart/form-data",
+                  url: "query/login.php",
+                  data: data,
+                  processData: false,
+                  contentType: false,
                 success: function (response) {
-                  console.log(response)
+                  const data  = JSON.parse(response).loginObj;
+                  console.log(data)
+                  if(data[0].status == "true"){
+                    if(data[0].role ==1){
+                      window.location.href="home.php" 
+                    }else{
+                      window.location.href="admin.php" 
+                    }
+                  }else{
+                    SoloAlert.alert({
+                      title:"Error!!",
+                      body:"ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+                      icon: "error",
+                      theme: "light",
+                      useTransparency: true,
+                    });
+                  }
                 }
               });
             }
