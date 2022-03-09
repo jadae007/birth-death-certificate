@@ -40,7 +40,11 @@ $("#cancelModal").click(function (e) {
   $(":input").removeClass("border border-danger");
   $("#fromAddDeath")[0].reset();
 });
-
+$("#deathDate").change(function (e) { 
+  e.preventDefault();
+  console.log(this.value)
+  
+});
 
 
 $("#submit").click(function (e) {
@@ -146,6 +150,46 @@ $("#submit").click(function (e) {
   }
 });
 
+const showInfo = (id) =>{
+  $.ajax({
+    type: "get",
+    url: "query/showOneDeath.php",
+    data:{
+      id,
+    }, 
+    success: function (response) {
+    if(response != "null"){
+      const data = JSON.parse(response);
+      console.log(data)
+      $("#no").val(data.no)
+      $("#preName").val(data.prename)
+      $("#firstName").val(data.firstName)
+      $("#lastName").val(data.lastName)
+      $("#hn").val(data.hn)
+      $("#cId").val(data.cid)
+      $("#age").val(data.age)
+      $("#address").val(data.address)
+      $("#zipCode").val(data.zip_code)
+      $("#deathDate").val(data.deathDateAndtime)
+      $("#doctorName").val(data.doctorName)
+      $("#department").val(data.department)
+      $("#causeOfDeathEng1").val(data.causeOfDeath1)
+      $("#causeOfDeathEng2").val(data.causeOfDeath2)
+      $("#causeOfDeathEng3").val(data.causeOfDeath3)
+      $("#causeOfDeathEng4").val(data.causeOfDeath4)
+      $("#causeOfDeathThai").val(data.causeOfDeathThai)
+      $("#nameInformer").val(data.informerName)
+      $("#cIdInformer").val(data.informerCid)
+      $("#telInformer").val(data.informerTel)
+      $("#relation").val(data.relation)
+    }else{
+
+    }
+    }
+  });
+  $("#deathCer").modal("show")
+}
+
 const showProvinces = () => {
   $.ajax({
     type: "get",
@@ -160,6 +204,44 @@ const showProvinces = () => {
       });
     },
   });
+};
+
+const deleteDeath = (id) => {
+  SoloAlert.confirm({
+    title:"แน่ใจหรือไม่?",
+    body:"คุณแน่ใจว่าต้องการจะลบหรือไม่?",
+    useTransparency: true,
+    onOk : ()=>{
+      $.ajax({
+        type: "post",
+        url: "query/deleteDeath.php",
+        data:{id,},
+        success: function (response) {
+          const data = JSON.parse(response)
+          if(data.status == "true"){
+            SoloAlert.alert({
+              title:"Success!!",
+              body:"ลบข้อมูลเรียบร้อยแล้ว?",
+              icon:"success",
+              useTransparency: true,
+              onOk : ()=>{
+               $("#table").DataTable().destroy();
+               $("#tbody").children().remove();
+               showAllDeath();
+              },
+            })
+          }else{
+            SoloAlert.alert({
+              title:"ไม่สามารถลบข้อมูลได้!!",
+              body:data.message,
+              icon:"error",
+              useTransparency: true,
+            })
+          }
+        }
+      });
+    },
+  })
 };
 
 const showDistricts = (provinceId) => {
@@ -222,8 +304,12 @@ const showAllDeath = () =>{
          <td>${element.causeOfDeathThai}</td>
          <td>${element.informerName}</td>
          <td>
-           <button type="button" class="btn btn-info btn-floating"><i class="fas fa-info-circle"></i></button>
-           <button type="button" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></button>
+           <button type="button" class="btn btn-info btn-floating" onclick="showInfo(${
+            element.id
+          })"><i class="fas fa-info-circle"></i></button>
+           <button type="button" class="btn btn-danger btn-floating" onclick="deleteDeath(${
+            element.id
+          })"><i class="fas fa-trash"></i></button>
          </td>
        </tr>
          `);

@@ -26,6 +26,7 @@ if(!empty($_POST)){
     if($row_user['role']== 0){
       if(isset($_POST['remember'])){
         setcookie("role", $row_user['role'], time() +(60*60*24*7), '/birth-death-certificate/');
+        setcookie("username", $row_user['username'], time() +(60*60*24*7), '/birth-death-certificate/');
       }
       $_SESSION["role"] = 0;
       $resultLogin['loginObj'][] = array("status"=>"true","role"=>$row_user['role']);
@@ -33,6 +34,7 @@ if(!empty($_POST)){
     }
     if($row_user['role']== 1){
       if(isset($_POST['remember'])){
+        setcookie("username", $row_user['username'], time() +(60*60*24*7), '/birth-death-certificate/');
         setcookie("role", $row_user['role'], time() +(60*60*24*7), '/birth-death-certificate/');
       }
       $_SESSION["role"] = 1;

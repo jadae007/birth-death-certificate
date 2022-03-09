@@ -1,3 +1,13 @@
+<?php 
+session_start();
+if(isset($_COOKIE['project']) &&  $_COOKIE['project'] == "certificate"){
+  $_SESSION['loginId'] = $_COOKIE['loginId'];
+  $_SESSION['role'] = $_COOKIE['role'];
+  $_SESSION['username'] = $_COOKIE['username'];
+  header("Location:home.php");
+  
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

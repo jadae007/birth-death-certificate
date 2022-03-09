@@ -234,9 +234,29 @@ const deleteBaby = (id) => {
       $.ajax({
         type: "post",
         url: "query/deleteBaby.php",
-        id,
+        data:{id,},
         success: function (response) {
-           console.log(response)
+          const data = JSON.parse(response)
+          if(data.status == "true"){
+            SoloAlert.alert({
+              title:"Success!!",
+              body:"ลบข้อมูลเรียบร้อยแล้ว?",
+              icon:"success",
+              useTransparency: true,
+              onOk : ()=>{
+               $("#babyTable").DataTable().destroy();
+               $("#tbody").children().remove();
+               showAllBaby();
+              },
+            })
+          }else{
+            SoloAlert.alert({
+              title:"ไม่สามารถลบข้อมูลได้!!",
+              body:data.message,
+              icon:"error",
+              useTransparency: true,
+            })
+          }
         }
       });
     },
