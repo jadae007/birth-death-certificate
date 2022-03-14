@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2022 at 02:24 AM
+-- Generation Time: Mar 14, 2022 at 04:17 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -62,34 +62,7 @@ CREATE TABLE `birth` (
 --
 
 INSERT INTO `birth` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `birthDateTime`, `birthDay`, `weight`, `lunarPhase`, `thaiMonth`, `thaiYears`, `preNameFather`, `firstNameFather`, `midNameFather`, `lastNameFather`, `cidFather`, `preNameMother`, `firstNameMother`, `midNameMother`, `lastNameMother`, `cidMother`, `address`, `subDistrict`, `informerName`, `informerTel`, `relation`) VALUES
-(11, '1/2564', 'ด.ช.', 'cidMother', '', 'asdasd', '2022-02-24 11:04:00', 'พฤหัสบดี', 3000, 'แรม 8', '3', 'ฉลู', 'asd', 'asdas', NULL, 'dasd', '11899', 'das', 'd', NULL, 'dasd', '11566', 'asdasd', '1341', 'dasd', '099', 'asdqwe'),
-(12, '2/2564', 'ด.ญ.', 'asrqw', '', 'eqweasd', '2022-02-22 11:05:00', 'อังคาร', 555, 'แรม 6', '3', 'ฉลู', 'asd', 'ee', NULL, 'easd', 'asd', 'czx', 'asd', NULL, 'qwed', 'asdasd', 'fawq', '814', 'e', 'asdasd', 'dasd'),
-(13, '3/2564', 'ด.ช.', 'asdasd', '', 'asdasd', '2022-02-23 11:33:00', 'พุธ', 3000, 'แรม 7', '3', 'ฉลู', 'asd', 'asd', NULL, 'asd', 'asdas', 'asd', 'asd', NULL, 'asd', 'asd', 'dasd', '1147', 'asd', 'asd', 'asd');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cause_of_death`
---
-
-CREATE TABLE `cause_of_death` (
-  `id` int(10) NOT NULL,
-  `deathNo` varchar(10) NOT NULL,
-  `causeOfDeath` varchar(255) NOT NULL,
-  `language` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cause_of_death`
---
-
-INSERT INTO `cause_of_death` (`id`, `deathNo`, `causeOfDeath`, `language`) VALUES
-(1, '1/2565', 'test1', 'en'),
-(2, '1/2565', 'test2', 'en'),
-(3, '1/2565', 'ตุย', 'th'),
-(4, '2/2565', 'testdeath1', 'en'),
-(5, '2/2565', 'testdeath2', 'en'),
-(6, '2/2565', 'ตุยเลี้ยว', 'th');
+(11, '1/2564', 'ด.ช.', 'cidMother', '', 'asdasd', '2022-02-24 11:04:00', 'พฤหัสบดี', 3000, 'แรม 8', '3', 'ฉลู', 'asd', 'asdas', NULL, 'dasd', '11899', 'das', 'd', NULL, 'dasd', '11566', 'asdasd', '1341', 'dasd', '099', 'asdqwe');
 
 -- --------------------------------------------------------
 
@@ -107,7 +80,6 @@ CREATE TABLE `death` (
   `hn` varchar(7) NOT NULL,
   `cid` varchar(13) NOT NULL,
   `age` int(3) DEFAULT NULL,
-  `sex` varchar(1) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `subDistrict` varchar(50) DEFAULT NULL,
   `dateDead` datetime DEFAULT NULL,
@@ -116,16 +88,22 @@ CREATE TABLE `death` (
   `informerName` varchar(255) DEFAULT NULL,
   `informerCid` varchar(13) DEFAULT NULL,
   `informerTel` varchar(10) DEFAULT NULL,
-  `relation` varchar(20) DEFAULT NULL
+  `relation` varchar(20) DEFAULT NULL,
+  `causeOfDeath1` varchar(255) NOT NULL,
+  `causeOfDeath2` varchar(255) DEFAULT NULL,
+  `causeOfDeath3` varchar(255) DEFAULT NULL,
+  `causeOfDeath4` varchar(255) DEFAULT NULL,
+  `causeOfDeathThai` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `death`
 --
 
-INSERT INTO `death` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `hn`, `cid`, `age`, `sex`, `address`, `subDistrict`, `dateDead`, `department`, `doctorName`, `informerName`, `informerCid`, `informerTel`, `relation`) VALUES
-(1, '1/2565', 'นาย', 'ทดสอบ1', NULL, 'นามสกุลทดสอบ1', '0123456', '1189900258444', 20, 'm', '222 ม.6', '1341', '2022-03-03 04:49:19', 'อญ1', '111', 'นายทดสอบ ให้ข้อมูล', '1123456789', '0970616129', 'ไม่ทราบ'),
-(2, '2/2565', 'นาง', 'ทดสอบ2', NULL, 'ทดสอบ2', '0123459', '1579856932135', 32, 'f', '6565', NULL, '2022-03-03 04:49:19', '814', '1122', 'นายทดสอบ ให้ข้อมูล2', '1256983458213', '0598321369', 'หลาน');
+INSERT INTO `death` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `hn`, `cid`, `age`, `address`, `subDistrict`, `dateDead`, `department`, `doctorName`, `informerName`, `informerCid`, `informerTel`, `relation`, `causeOfDeath1`, `causeOfDeath2`, `causeOfDeath3`, `causeOfDeath4`, `causeOfDeathThai`) VALUES
+(1, '1/2565', 'นาย', 'ทดสอบ11', NULL, 'นามสกุลทดสอบ11', '0123456', '1189900258411', 21, '222 ม.6', '1', '2022-03-14 04:49:19', 'อญ1', 'นพ.ทดสอบ อิอิ', 'นายทดสอบ ให้ข้อมูล', '112345678933', '0970212', 'ไม่ทราบ', 'death11', 'death22', 'death33', '', 'ตุยๆ'),
+(2, '2/2565', 'นาง', 'ทดสอบ2', NULL, 'ทดสอบ2', '0123459', '1579856932135', 32, '6565', '7311', '2022-03-03 16:00:19', 'ICU MED', 'พญ.ทดสอบ คิคิ', 'นายทดสอบ ให้ข้อมูล2', '1256983458213', '0598321369', 'หลาน', 'testdeath1', 'death2', NULL, NULL, 'ตุยแล้ว'),
+(4, '3/2565', 'นาย', 'ทดสอบๆๆ', NULL, 'หกดหกด', '0655985', '1748798545798', 23, '333 ม.66', '3382', '2022-03-01 09:57:00', 'ศัลยกรรม 1', 'นพ.ทดสอบๆๆๆ', 'ธนพงศ์ เขียวโพธิ์', '1189900258441', '0970616129', 'ไม่ทราบ', 'Death', 'dd', '', '', 'ตุยๆๆๆ');
 
 -- --------------------------------------------------------
 
@@ -8571,13 +8549,22 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `di
 
 CREATE TABLE `users` (
   `id` int(10) NOT NULL,
-  `username` varchar(100) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `phoneNumber` varchar(10) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `role` int(1) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `tel` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `firstName`, `lastName`, `email`, `tel`) VALUES
+(1, 'admin', '9e36cccce1706b2cdee74b723af3453a9e5d194803963411b48cc068ded32d7d', 0, 'Admin', 'Admin', 'Admin@demo.com', '0970616129'),
+(3, 'user', '9e36cccce1706b2cdee74b723af3453a9e5d194803963411b48cc068ded32d7d', 1, 'demoUser1', 'User', 'user@demo.knh', '0123456789');
 
 --
 -- Indexes for dumped tables
@@ -8588,13 +8575,6 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `birth`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cause_of_death`
---
-ALTER TABLE `cause_of_death`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `to death` (`deathNo`);
 
 --
 -- Indexes for table `death`
@@ -8634,7 +8614,8 @@ ALTER TABLE `subdistricts`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -8647,16 +8628,10 @@ ALTER TABLE `birth`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `cause_of_death`
---
-ALTER TABLE `cause_of_death`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `death`
 --
 ALTER TABLE `death`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -8680,17 +8655,11 @@ ALTER TABLE `subdistricts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `cause_of_death`
---
-ALTER TABLE `cause_of_death`
-  ADD CONSTRAINT `to death` FOREIGN KEY (`deathNo`) REFERENCES `death` (`no`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `districts`

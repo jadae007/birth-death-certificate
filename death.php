@@ -8,7 +8,7 @@ require('query/checkLogin.php');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>แจ้งตาย</title>
+  <title>บันทึกการแจ้งตาย</title>
   <?php
   require('mdbCSS.php');
   require('mdbJS.php');
@@ -72,6 +72,7 @@ require('query/checkLogin.php');
         </div>
         <div class="modal-body">
           <form method="post" id="fromAddDeath" enctype="multipart/form-data">
+            <input type="hidden" name="deathId" id="deathId" value="">
             <div class="row">
               <div class="col-2">
                 <input type="text" class="form-control mb-3" name="no" id="no" placeholder="ลำดับ" required>
@@ -106,35 +107,18 @@ require('query/checkLogin.php');
                 <label for="age">อายุ</label>
                 <input type="text" id="age" name="age" class="form-control" maxlength="3" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="อายุ" required>
               </div>
-              <div class="col-2">
+              <!-- <div class="col-2">
                 <label for="sex">เพศ</label>
                 <select class="form-select" id="sex" name="sex" aria-label="Default select example">
                   <option value="m">ชาย</option>
                   <option value="f">หญิง</option>
                 </select>
-              </div>
-              <!-- <div class="col-2">
-                <label for="nationality">สัญชาติ</label>
-                <input type="text" id="nationality" name="nationality" class="form-control" placeholder="สัญชาติ" required>
-              </div>
-              <div class="col-4">
-                <label for="occupation">อาชีพ</label>
-                <input type="text" id="occupation" name="occupation" class="form-control" placeholder="อาชีพ" required>
-              </div>
-              <div class="col-2">
-                <label for="status">สถานภาพ</label>
-                <input type="text" id="status" nameid="status" class="form-control" placeholder="สถานภาพ" required>
-              </div>
-              <div class="col-2">
-                <label for="religion">ศาสนา</label>
-                <input type="text" id="religion" name="religion" class="form-control" placeholder="ศาสนา" required>
               </div> -->
-
             </div>
             <div class="row">
               <div class="col-4">
                 <label for="address">ที่อยู่</label>
-                <input type="text" class="form-control" id="address" name="address"></input required>
+                <input type="text" class="form-control" id="address" name="address" required>
               </div>
               <div class="col-2">
                 <label for="provinces">จังหวัด</label>

@@ -1,16 +1,10 @@
+var stateModal = 0;
 $(document).ready(function () {
   $("#deadMenu a").addClass("active ");
   showAllDeath();
   showProvinces();
 });
 
-$("#preName").keyup(function (e) { 
-  let value = e.target.value
-  console.log(value.length)
-if(value.length == 6){
-  value == "นางสาว" ? console.log("นาย") : console.log("ไม่ใช่นาย")
-}
-});
 $("#provinces").change(function () {
   $("#amphures").children().remove();
   $("#districts").children().remove();
@@ -29,28 +23,25 @@ $("#districts").change(function () {
     }
   });
 });
-$("#xModal").click(function (e) { 
+$("#xModal").click(function (e) {
   e.preventDefault();
   $(":input").removeClass("border border-danger");
   $("#fromAddDeath")[0].reset();
+  stateModal = 0
 });
 
-$("#cancelModal").click(function (e) { 
+$("#cancelModal").click(function (e) {
   e.preventDefault();
   $(":input").removeClass("border border-danger");
   $("#fromAddDeath")[0].reset();
+  stateModal = 0
 });
-$("#deathDate").change(function (e) { 
+$("#deathDate").change(function (e) {
   e.preventDefault();
-  console.log(this.value)
-  
 });
-
 
 $("#submit").click(function (e) {
-  console.log("submit")
   e.preventDefault();
-
   let form = e.target.form;
   let data = new FormData(form);
 
@@ -73,11 +64,10 @@ $("#submit").click(function (e) {
     form.telInformer.value == "" ||
     form.relation.value == ""
   ) {
-    console.log("some empty")
     form.no.value == ""
       ? $("#no").addClass("border border-danger")
       : $("#no").removeClass("border border-danger");
-      
+
     form.preName.value == ""
       ? $("#preName").addClass("border border-danger")
       : $("#preName").removeClass("border border-danger");
@@ -146,49 +136,50 @@ $("#submit").click(function (e) {
       ? $("#relation").addClass("border border-danger")
       : $("#relation").removeClass("border border-danger");
   } else {
-    addDeath(data);
+    stateModal ?editDeath(data):addDeath(data)
   }
 });
 
-const showInfo = (id) =>{
+const showInfo = (id) => {
+  $("#deathId").val(id)
   $.ajax({
     type: "get",
     url: "query/showOneDeath.php",
-    data:{
+    data: {
       id,
-    }, 
+    },
     success: function (response) {
-    if(response != "null"){
-      const data = JSON.parse(response);
-      console.log(data)
-      $("#no").val(data.no)
-      $("#preName").val(data.prename)
-      $("#firstName").val(data.firstName)
-      $("#lastName").val(data.lastName)
-      $("#hn").val(data.hn)
-      $("#cId").val(data.cid)
-      $("#age").val(data.age)
-      $("#address").val(data.address)
-      $("#zipCode").val(data.zip_code)
-      $("#deathDate").val(data.deathDateAndtime)
-      $("#doctorName").val(data.doctorName)
-      $("#department").val(data.department)
-      $("#causeOfDeathEng1").val(data.causeOfDeath1)
-      $("#causeOfDeathEng2").val(data.causeOfDeath2)
-      $("#causeOfDeathEng3").val(data.causeOfDeath3)
-      $("#causeOfDeathEng4").val(data.causeOfDeath4)
-      $("#causeOfDeathThai").val(data.causeOfDeathThai)
-      $("#nameInformer").val(data.informerName)
-      $("#cIdInformer").val(data.informerCid)
-      $("#telInformer").val(data.informerTel)
-      $("#relation").val(data.relation)
-    }else{
-
-    }
-    }
+      if (response != "null") {
+        const data = JSON.parse(response);
+        console.log(data);
+        $("#no").val(data.no);
+        $("#preName").val(data.prename);
+        $("#firstName").val(data.firstName);
+        $("#lastName").val(data.lastName);
+        $("#hn").val(data.hn);
+        $("#cId").val(data.cid);
+        $("#age").val(data.age);
+        $("#address").val(data.address);
+        $("#zipCode").val(data.zip_code);
+        $("#deathDate").val(data.deathDateAndtime);
+        $("#doctorName").val(data.doctorName);
+        $("#department").val(data.department);
+        $("#causeOfDeathEng1").val(data.causeOfDeath1);
+        $("#causeOfDeathEng2").val(data.causeOfDeath2);
+        $("#causeOfDeathEng3").val(data.causeOfDeath3);
+        $("#causeOfDeathEng4").val(data.causeOfDeath4);
+        $("#causeOfDeathThai").val(data.causeOfDeathThai);
+        $("#nameInformer").val(data.informerName);
+        $("#cIdInformer").val(data.informerCid);
+        $("#telInformer").val(data.informerTel);
+        $("#relation").val(data.relation);
+      } else {
+      }
+    },
   });
-  $("#deathCer").modal("show")
-}
+  $("#deathCer").modal("show");
+  stateModal = 1;
+};
 
 const showProvinces = () => {
   $.ajax({
@@ -208,40 +199,40 @@ const showProvinces = () => {
 
 const deleteDeath = (id) => {
   SoloAlert.confirm({
-    title:"แน่ใจหรือไม่?",
-    body:"คุณแน่ใจว่าต้องการจะลบหรือไม่?",
+    title: "แน่ใจหรือไม่?",
+    body: "คุณแน่ใจว่าต้องการจะลบหรือไม่?",
     useTransparency: true,
-    onOk : ()=>{
+    onOk: () => {
       $.ajax({
         type: "post",
         url: "query/deleteDeath.php",
-        data:{id,},
+        data: { id },
         success: function (response) {
-          const data = JSON.parse(response)
-          if(data.status == "true"){
+          const data = JSON.parse(response);
+          if (data.status == "true") {
             SoloAlert.alert({
-              title:"Success!!",
-              body:"ลบข้อมูลเรียบร้อยแล้ว?",
-              icon:"success",
+              title: "Success!!",
+              body: "ลบข้อมูลเรียบร้อยแล้ว?",
+              icon: "success",
               useTransparency: true,
-              onOk : ()=>{
-               $("#table").DataTable().destroy();
-               $("#tbody").children().remove();
-               showAllDeath();
+              onOk: () => {
+                $("#table").DataTable().destroy();
+                $("#tbody").children().remove();
+                showAllDeath();
               },
-            })
-          }else{
+            });
+          } else {
             SoloAlert.alert({
-              title:"ไม่สามารถลบข้อมูลได้!!",
-              body:data.message,
-              icon:"error",
+              title: "ไม่สามารถลบข้อมูลได้!!",
+              body: data.message,
+              icon: "error",
               useTransparency: true,
-            })
+            });
           }
-        }
+        },
       });
     },
-  })
+  });
 };
 
 const showDistricts = (provinceId) => {
@@ -265,13 +256,14 @@ const showDistricts = (provinceId) => {
 
 const showSubDistricts = (districtId) => {
   $.ajax({
-    type: "get",
+    type: "GET",
     data: {
       districtId,
     },
     url: "query/showSubDistricts.php",
     success: function (response) {
       const { subDistrictsObj } = JSON.parse(response);
+
       subDistrictsObj.forEach((element) => {
         $("#districts").append(`
           <option value="${element.id}">${element.name_in_thai}</option>
@@ -283,15 +275,15 @@ const showSubDistricts = (districtId) => {
   });
 };
 
-const showAllDeath = () =>{
+const showAllDeath = () => {
   $.ajax({
     type: "get",
     url: "query/showAllDeath.php",
     success: function (response) {
-      const {deathObj} = JSON.parse(response);
-      if(deathObj != "null"){
-       deathObj.forEach(element => {
-         $("#tbody").append(`
+      const { deathObj } = JSON.parse(response);
+      if (deathObj != "null") {
+        deathObj.forEach((element) => {
+          $("#tbody").append(`
          <tr>
          <th scope="row">${element.no}</th>
          <td>${element.prename}${element.firstName} ${element.lastName}</td>
@@ -305,29 +297,31 @@ const showAllDeath = () =>{
          <td>${element.informerName}</td>
          <td>
            <button type="button" class="btn btn-info btn-floating" onclick="showInfo(${
-            element.id
-          })"><i class="fas fa-info-circle"></i></button>
+             element.id
+           })"><i class="fas fa-info-circle"></i></button>
            <button type="button" class="btn btn-danger btn-floating" onclick="deleteDeath(${
-            element.id
-          })"><i class="fas fa-trash"></i></button>
+             element.id
+           })"><i class="fas fa-trash"></i></button>
          </td>
        </tr>
          `);
-       });
-
-
-      }else{
-
+        });
       }
-
-
-     table =  $("#table").DataTable({
+      table = $("#table").DataTable({
         scrollX: true,
         scrollY: "600px",
-      });
-    }
+        dom: "Bfrtip",
+        buttons: [
+          {
+            extend: "excelHtml5",
+            className: "btn btn-success",
+          },
+        ],
+      }
+      );
+    },
   });
-}
+};
 
 const addDeath = (data) => {
   $.ajax({
@@ -339,30 +333,69 @@ const addDeath = (data) => {
     contentType: false,
     cache: false,
     success: function (response) {
-     const { status } = JSON.parse(response)
-     if (status == "true") {
-      $("#deathCer").modal("hide");
-      $("#fromAddDeath")[0].reset();
-      $(":input").removeClass("border border-danger");
-      SoloAlert.alert({
-        title: "Success!!",
-        body: "บันทึกการแจ้งตายเรียบร้อยแล้ว",
-        icon: "success",
-        useTransparency: true,
-        onOk: () => {
-          table.destroy();
-          $("#tbody").children().remove();
-          showAllDeath();
-        },
-      });
-    } else {
-      SoloAlert.alert({
-        title: "ERROR!!",
-        body: "ไม่สามารถบันทึกข้อมูลได้",
-        icon: "error",
-        useTransparency: true,
-      });
-    }
+      const { status } = JSON.parse(response);
+      if (status == "true") {
+        $("#deathCer").modal("hide");
+        $("#fromAddDeath")[0].reset();
+        $(":input").removeClass("border border-danger");
+        SoloAlert.alert({
+          title: "Success!!",
+          body: "บันทึกการแจ้งตายเรียบร้อยแล้ว",
+          icon: "success",
+          useTransparency: true,
+          onOk: () => {
+            table.destroy();
+            $("#tbody").children().remove();
+            showAllDeath();
+          },
+        });
+      } else {
+        SoloAlert.alert({
+          title: "ERROR!!",
+          body: "ไม่สามารถบันทึกข้อมูลได้",
+          icon: "error",
+          useTransparency: true,
+        });
+      }
     },
   });
 };
+
+const editDeath = (data) => {
+  $.ajax({
+    type: "POST",
+    enctype: "multipart/form-data",
+    url: "query/editDeath.php",
+    data: data,
+    processData: false,
+    contentType: false,
+    cache: false,
+    success: function (response) {
+      const { status } = JSON.parse(response);
+      if (status == "true") {
+        $("#deathCer").modal("hide");
+        $("#fromAddDeath")[0].reset();
+        $(":input").removeClass("border border-danger");
+        SoloAlert.alert({
+          title: "Success!!",
+          body: "แก้ไขการแจ้งตายเรียบร้อยแล้ว",
+          icon: "success",
+          useTransparency: true,
+          onOk: () => {
+            table.destroy();
+            $("#tbody").children().remove();
+            showAllDeath();
+          },
+        });
+      } else {
+        SoloAlert.alert({
+          title: "ERROR!!",
+          body: "ไม่สามารถแก้ข้อมูลได้",
+          icon: "error",
+          useTransparency: true,
+        });
+      }
+    },
+  });
+};
+
