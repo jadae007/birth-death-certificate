@@ -1,6 +1,6 @@
 <?php 
 require('connect.php');
-$sql = "SELECT * FROM death";
+$sql = "SELECT * FROM death WHERE active = 1";
 $result = mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>0){
   $rows['deathObj'] = mysqli_fetch_all($result,MYSQLI_ASSOC);

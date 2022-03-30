@@ -65,6 +65,7 @@ require('query/checkLogin.php');
           <div class="modal-body">
             <div class="container-fluid">
               <form method="POST" id="addBabyFrom" enctype="multipart/form-data">
+                <input type="hidden" name="recorder" id="recorder" value="<?php echo $sessionUsername; ?>">
                 <div class="row mt-2 mb-2">
                   <div class="row">
                   <div class="col-2">

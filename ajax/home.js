@@ -134,9 +134,6 @@ const showAllBaby = () => {
 const editBaby = () => {
   let form = $("#showBabyFrom")[0];
   let data = new FormData(form);
-  //    for (var value of data.values()) {
-  //     console.log(value);
-  //  }
   $.ajax({
     type: "POST",
     enctype: "multipart/form-data",
@@ -374,8 +371,6 @@ const showInfo = (id) => {
 };
 
 const calDay = (date, modal) => {
-  console.log(date);
-  console.log(modal);
   $.getJSON("json/2022.json", function (data) {
     const new_data = data.year2022;
     let day = {};

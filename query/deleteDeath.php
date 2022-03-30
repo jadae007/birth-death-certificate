@@ -1,7 +1,7 @@
 <?php
 require('connect.php');
 $id = $_POST['id'];
-$sql = "DELETE FROM death WHERE id = '$id'";
+$sql = "UPDATE death SET active = 0 WHERE id = '$id'";
 
 if(mysqli_query($conn,$sql)){
   echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);

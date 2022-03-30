@@ -151,7 +151,6 @@ const showInfo = (id) => {
     success: function (response) {
       if (response != "null") {
         const data = JSON.parse(response);
-        console.log(data);
         $("#no").val(data.no);
         $("#preName").val(data.prename);
         $("#firstName").val(data.firstName);

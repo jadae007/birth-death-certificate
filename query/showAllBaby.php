@@ -1,7 +1,7 @@
 <?php 
 require_once('connect.php');
 
-$sql ="SELECT * FROM birth";
+$sql ="SELECT * FROM birth WHERE active = 1";
 $result = mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>=1){
  while($r = mysqli_fetch_assoc($result)){

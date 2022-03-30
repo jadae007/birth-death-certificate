@@ -72,6 +72,7 @@ require('query/checkLogin.php');
         </div>
         <div class="modal-body">
           <form method="post" id="fromAddDeath" enctype="multipart/form-data">
+          <input type="hidden" name="recorder" id="recorder" value="<?php echo $sessionUsername; ?>">
             <input type="hidden" name="deathId" id="deathId" value="">
             <div class="row">
               <div class="col-2">

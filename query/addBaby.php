@@ -23,7 +23,7 @@ $informerName = $_POST['informerName'];
 $informerTel = $_POST['informerTel'];
 $relation = $_POST['relation'];
 $subDistrictId = $_POST['districts'];
-
+$recorder = $_POST['recorder'];
 
 $sql = "INSERT INTO
 `birth`(
@@ -49,7 +49,9 @@ $sql = "INSERT INTO
     `informerName`,
     `informerTel`,
     `relation`,
-    `subDistrict`
+    `subDistrict`,
+    `recorder`,
+    `active`
 )
 VALUES (
     '$no',
@@ -74,7 +76,9 @@ VALUES (
     '$informerName',
     '$informerTel',
     '$relation',
-    '$subDistrictId'
+    '$subDistrictId',
+    '$recorder',
+    '1'
 )";
 
 $result = mysqli_query($conn,$sql);

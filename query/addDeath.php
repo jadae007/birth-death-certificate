@@ -21,6 +21,7 @@ $nameInformer = trim($_POST['nameInformer']);
 $cIdInformer = trim($_POST['cIdInformer']);
 $telInformer = trim($_POST['telInformer']);
 $relation = trim($_POST['relation']);
+$recorder = trim($_POST['recorder']);
 
 require('connect.php');
 
@@ -46,7 +47,9 @@ $sql = "INSERT INTO
     `causeOfDeath2`,
     `causeOfDeath3`,
     `causeOfDeath4`,
-    `causeOfDeathThai`
+    `causeOfDeathThai`,
+    `recorder`,
+    `active`
 )
 VALUES (
     '$no',
@@ -69,7 +72,9 @@ VALUES (
     '$causeOfDeathEng2',
     '$causeOfDeathEng3',
     '$causeOfDeathEng4',
-    '$causeOfDeathThai'
+    '$causeOfDeathThai',
+    '$recorder',
+    '1'
 )";
 
 echo (mysqli_query($conn, $sql)) ?  json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE) :  json_encode(array("status"=>"false","errMsg"=>mysqli_error($conn)),JSON_UNESCAPED_UNICODE);
