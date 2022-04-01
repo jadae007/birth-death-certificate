@@ -85,7 +85,7 @@ $result = mysqli_query($conn,$sql);
 if($result){
   echo json_encode(array("status"=>"true"),JSON_UNESCAPED_UNICODE);
 }else{
-  echo json_encode(array("status"=>"false"),JSON_UNESCAPED_UNICODE);
+  echo json_encode(array("status"=>"false","errMsg"=>mysqli_error($conn)),JSON_UNESCAPED_UNICODE);
 }
 mysqli_close($conn);
 
