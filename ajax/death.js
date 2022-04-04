@@ -40,6 +40,16 @@ $("#deathDate").change(function (e) {
   e.preventDefault();
 });
 
+$("#btnAddDeath").click(()=>{
+$.ajax({
+  type: "GET",
+  url: "query/showLastDeathId.php",
+  success: function (response) {
+    $("#no").val(response)
+  }
+});
+})
+
 $("#submit").click(function (e) {
   e.preventDefault();
   let form = e.target.form;
@@ -168,6 +178,7 @@ const showInfo = (id) => {
         $("#causeOfDeathEng3").val(data.causeOfDeath3);
         $("#causeOfDeathEng4").val(data.causeOfDeath4);
         $("#causeOfDeathThai").val(data.causeOfDeathThai);
+        $("#additionalCause").val(data.additionalCause);
         $("#nameInformer").val(data.informerName);
         $("#cIdInformer").val(data.informerCid);
         $("#telInformer").val(data.informerTel);

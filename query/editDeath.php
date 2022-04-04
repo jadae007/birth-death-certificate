@@ -17,6 +17,7 @@ $causeOfDeathEng1 = $_POST['causeOfDeathEng1'];
 $causeOfDeathEng2 = $_POST['causeOfDeathEng2'];
 $causeOfDeathEng3 = $_POST['causeOfDeathEng3'];
 $causeOfDeathEng4 = $_POST['causeOfDeathEng4'];
+$additionalCause = $_POST['additionalCause'];
 $causeOfDeathThai = $_POST['causeOfDeathThai'];
 $nameInformer = $_POST['nameInformer'];
 $cIdInformer = $_POST['cIdInformer'];
@@ -46,6 +47,7 @@ SET
 `causeOfDeath2` = '$causeOfDeathEng2',
 `causeOfDeath3` = '$causeOfDeathEng3',
 `causeOfDeath4` = '$causeOfDeathEng4',
+`additionalCause` = '$additionalCause',
 `causeOfDeathThai` = '$causeOfDeathThai'
 WHERE
 id='$deathId'";

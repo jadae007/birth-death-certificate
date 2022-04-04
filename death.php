@@ -22,7 +22,7 @@ require('query/checkLogin.php');
       <div class="col-1">
       </div>
       <div class="col-10 text-end">
-        <button type="button" data-mdb-toggle="modal" data-mdb-target="#deathCer" class="btn btn-danger btn-rounded btn-lg" style="font-size: 16px;">บันทึกการแจ้งตาย</button>
+        <button type="button" data-mdb-toggle="modal" id="btnAddDeath" data-mdb-target="#deathCer" class="btn btn-danger btn-rounded btn-lg" style="font-size: 16px;">บันทึกการแจ้งตาย</button>
       </div>
       <div class="col">
       </div>
@@ -163,6 +163,7 @@ require('query/checkLogin.php');
                 <input type="text" id="causeOfDeathEng2" name="causeOfDeathEng2" class="form-control mb-2" placeholder="b)">
                 <input type="text" id="causeOfDeathEng3" name="causeOfDeathEng3" class="form-control mb-2" placeholder="c)">
                 <input type="text" id="causeOfDeathEng4" name="causeOfDeathEng4" class="form-control mb-2" placeholder="d)">
+                <input type="text" id="additionalCause" name="additionalCause" class="form-control mb-2" placeholder="โรคหรือภาวะที่เป็นเหตุหนุน">
               </div>
               <div class="col-4">
                 <label for="causeOfDeath">สาเหตุการตายภาษาไทย</label>
@@ -177,7 +178,7 @@ require('query/checkLogin.php');
               </div>
               <div class="col-3">
                 <label for="cIdInformer">เลขบัตร ปชช. ผู้แจ้ง</label>
-                <input type="text" id="cIdInformer" name="cIdInformer" class="form-control mb-2" placeholder="เลขบัตรประจำตัวประชาชนผู้แจ้ง" required>
+                <input type="text" id="cIdInformer" name="cIdInformer" maxlength="13" class="form-control mb-2" placeholder="เลขบัตรประจำตัวประชาชนผู้แจ้ง" required>
               </div>
               <div class="col-3">
                 <label for="telInformer">เบอร์โทรผู้แจ้ง</label>

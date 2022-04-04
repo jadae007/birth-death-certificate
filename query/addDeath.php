@@ -16,6 +16,7 @@ $causeOfDeathEng1 = trim($_POST['causeOfDeathEng1']);
 $causeOfDeathEng2 = trim($_POST['causeOfDeathEng2']);
 $causeOfDeathEng3 = trim($_POST['causeOfDeathEng3']);
 $causeOfDeathEng4 = trim($_POST['causeOfDeathEng4']);
+$additionalCause = trim($_POST['additionalCause']);
 $causeOfDeathThai = trim($_POST['causeOfDeathThai']);
 $nameInformer = trim($_POST['nameInformer']);
 $cIdInformer = trim($_POST['cIdInformer']);
@@ -47,6 +48,7 @@ $sql = "INSERT INTO
     `causeOfDeath2`,
     `causeOfDeath3`,
     `causeOfDeath4`,
+    `additionalCause`,
     `causeOfDeathThai`,
     `recorder`,
     `active`
@@ -72,6 +74,7 @@ VALUES (
     '$causeOfDeathEng2',
     '$causeOfDeathEng3',
     '$causeOfDeathEng4',
+    '$additionalCause',
     '$causeOfDeathThai',
     '$recorder',
     '1'
