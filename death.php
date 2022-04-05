@@ -43,6 +43,11 @@ require('query/checkLogin.php');
               <th scope="col">เวลา</th>
               <th scope="col">หน่วยงาน</th>
               <th scope="col">แพทย์</th>
+              <th scope="col">cause of death1</th>
+              <th scope="col">cause of death2</th>
+              <th scope="col">cause of death3</th>
+              <th scope="col">cause of death4</th>
+              <th scope="col">โรคหรือภาวะอื่นที่เป็นเหตุหนุน</th>
               <th scope="col">สาเหตุการตายภาษาไทย</th>
               <th scope="col">ผู้แจ้ง</th>
               <th scope="col">Action</th>

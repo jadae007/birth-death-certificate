@@ -364,6 +364,7 @@ const showAllDeath = () => {
     url: "query/showAllDeath.php",
     success: function (response) {
       const { deathObj } = JSON.parse(response);
+     console.log(deathObj)
       if (deathObj != "null") {
         deathObj.forEach((element) => {
           $("#tbody").append(`
@@ -377,6 +378,11 @@ const showAllDeath = () => {
          <td>${element.dateDead.split(" ")[1]}</td>
          <td>${element.department}</td>
          <td>${element.doctorName}</td>
+         <td>${element.causeOfDeath1}</td>
+         <td>${element.causeOfDeath2}</td>
+         <td>${element.causeOfDeath3}</td>
+         <td>${element.causeOfDeath4}</td>
+         <td>${element.additionalCause}</td>
          <td>${element.causeOfDeathThai}</td>
          <td>${element.informerName}</td>
          <td>
@@ -392,6 +398,11 @@ const showAllDeath = () => {
         });
       }
       $('td:nth-child(3),th:nth-child(3)').hide();
+      $('td:nth-child(10),th:nth-child(10)').hide();
+      $('td:nth-child(11),th:nth-child(11)').hide();
+      $('td:nth-child(12),th:nth-child(12)').hide();
+      $('td:nth-child(13),th:nth-child(13)').hide();
+      $('td:nth-child(14),th:nth-child(14)').hide();
       table = $("#table").DataTable({
         scrollX: true,
         scrollY: "600px",

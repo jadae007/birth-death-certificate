@@ -103,9 +103,13 @@ const showAllBaby = () => {
         }</td>
       <td>${element.informerName}</td>
       <td>
+      
         <button type="button" class="btn btn-info btn-floating" onclick="showInfo(${
           element.id
         })"><i class="fas fa-info-circle"></i></button>
+        <button type="button" class="btn btn-secondary btn-floating" onclick="printDoc(${
+          element.id
+        })"><i class="fa fa-print" aria-hidden="true"></i></button>
         <button type="button" class="btn btn-danger btn-floating" onclick="deleteBaby(${
           element.id
         })"><i class="fas fa-trash"></i></button>
@@ -306,7 +310,6 @@ const showInfoProvince = (provinceId) => {
 };
 
 const showInfoDistrict = (provinceId,districtId) => {
-
   $.ajax({
     type: "get",
     data: {
@@ -371,6 +374,9 @@ const showInfo = (id) => {
     },
   });
 };
+const printDoc = (id) =>{
+  window.open(`print.php?id=${id}`, '_blank');
+}
 
 const calDay = (date, modal) => {
   $.getJSON("json/2022.json", function (data) {
