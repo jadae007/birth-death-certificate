@@ -36,6 +36,7 @@ require('query/checkLogin.php');
             <tr class="text-center">
               <th scope="col">ลำดับ</th>
               <th scope="col">ชื่อ - สกุล</th>
+              <th scope="col">ที่อยู่</th>
               <th scope="col">เลขที่บัตร ปชช.</th>
               <th scope="col">อายุ</th>
               <th scope="col">ว ด ป</th>

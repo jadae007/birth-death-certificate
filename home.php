@@ -36,6 +36,7 @@ require('query/checkLogin.php');
             <tr class="text-center">
               <th scope="col">ลำดับ</th>
               <th scope="col">ชื่อ - สกุล</th>
+              <th scope="col">ที่อยู่</th>
               <th scope="col">วันเกิด</th>
               <th scope="col">น้ำหนัก</th>
               <th scope="col">บิดา</th>

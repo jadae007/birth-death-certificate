@@ -161,6 +161,7 @@ const showInfo = (id) => {
     success: function (response) {
       if (response != "null") {
         const data = JSON.parse(response);
+ 
         $("#no").val(data.no);
         $("#preName").val(data.prename);
         $("#firstName").val(data.firstName);
@@ -183,7 +184,9 @@ const showInfo = (id) => {
         $("#cIdInformer").val(data.informerCid);
         $("#telInformer").val(data.informerTel);
         $("#relation").val(data.relation);
-      } else {
+        showInfoProvince(data.provinceId)
+        showInfoDistrict(data.provinceId,data.districtId)
+        showInfoSubDistrict(data.districtId,data.subDistrictId);
       }
     },
   });
@@ -203,6 +206,76 @@ const showProvinces = () => {
           <option value="${element.id}">${element.name_in_thai}</option>
           `);
       });
+    },
+  });
+};
+
+
+const showInfoSubDistrict = (districtId, subDistrictId) => {
+  $.ajax({
+    type: "get",
+    data: {
+      districtId,
+    },
+    url: "query/showSubDistricts.php",
+    success: function (response) {
+      $("#districts").children().remove();
+      const { subDistrictsObj } = JSON.parse(response);
+      let html = "";
+      subDistrictsObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (subDistrictId == element.id) {
+          html += " selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+
+      $("#districts").append(html);
+    },
+  });
+};
+
+const showInfoProvince = (provinceId) => {
+  $.ajax({
+    type: "get",
+    url: "query/showProvinces.php",
+    success: function (response) {
+      $("#provinces").children().remove()
+      const { provincesObj } = JSON.parse(response);
+      let html = "";
+      provincesObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (provinceId == element.id) {
+          html += "selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+      $("#provinces").append(html);
+    },
+  });
+};
+
+const showInfoDistrict = (provinceId,districtId) => {
+
+  $.ajax({
+    type: "get",
+    data: {
+      provinceId,
+    },
+    url: "query/showDistricts.php",
+    success: function (response) {
+      const { districtsObj } = JSON.parse(response);
+      $("#amphures").children().remove()
+      let html = "";
+      districtsObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (districtId == element.id) {
+          html += "selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+      
+      $("#amphures").append(html);
     },
   });
 };
@@ -297,6 +370,7 @@ const showAllDeath = () => {
          <tr>
          <th scope="row">${element.no}</th>
          <td>${element.prename}${element.firstName} ${element.lastName}</td>
+         <td>${element.address} ต.${element.subDistrict} อ.${element.district} จ.${element.province} ${element.zip_code}</td>
          <td>${element.cid}</td>
          <td>${element.age}</td>
          <td>${element.dateDead.split(" ")[0]}</td>
@@ -317,6 +391,7 @@ const showAllDeath = () => {
          `);
         });
       }
+      $('td:nth-child(3),th:nth-child(3)').hide();
       table = $("#table").DataTable({
         scrollX: true,
         scrollY: "600px",

@@ -87,13 +87,12 @@ const showAllBaby = () => {
     success: function (data) {
       const { babyObj } = JSON.parse(data);
       if(babyObj != null){
-
-
       babyObj.forEach((element) => {
         $("#tbody").append(`
       <tr>
       <th scope="row">${element.no}</th>
       <td>${element.prename}${element.firstName} ${element.lastName}</td>
+      <td>${element.address} ต.${element.subDistrict} อ.${element.district} จ.${element.province} ${element.zip_code}</td>
       <td>${element.birthDateTime.split(" ")[0]}</td>
       <td>${element.weight}</td>
       <td>${element.preNameFather}${element.firstNameFather} ${
@@ -114,6 +113,7 @@ const showAllBaby = () => {
     </tr>
       `);
       });
+      $('td:nth-child(3),th:nth-child(3)').hide();
       table = $("#babyTable").DataTable({
         dom: "Bfrtip",
         buttons: [
@@ -260,6 +260,7 @@ const deleteBaby = (id) => {
   })
 };
 
+
 const showInfoSubDistrict = (districtId, subDistrictId) => {
   $.ajax({
     type: "get",
@@ -280,32 +281,6 @@ const showInfoSubDistrict = (districtId, subDistrictId) => {
       });
 
       $("#editDistricts").append(html);
-      $("#editZipCode").val(subDistrictsObj[0].zip_code);
-      getZipCode = subDistrictsObj;
-    },
-  });
-};
-
-const showInfoDistrict = (provinceId) => {
-  $.ajax({
-    type: "get",
-    data: {
-      provinceId,
-    },
-    url: "query/showDistricts.php",
-    success: function (response) {
-      const { districtsObj } = JSON.parse(response);
-      $("#editAmphures").children().remove();
-      let html = "";
-      districtsObj.forEach((element) => {
-        html += `<option value="${element.id}"`;
-        if (provinceId == element.id) {
-          html += "selected";
-        }
-        html += `>${element.name_in_thai}</option>`;
-      });
-      showInfoSubDistrict(districtsObj[0].id);
-      $("#editAmphures").append(html);
     },
   });
 };
@@ -315,8 +290,8 @@ const showInfoProvince = (provinceId) => {
     type: "get",
     url: "query/showProvinces.php",
     success: function (response) {
+      $("#editProvinces").children().remove()
       const { provincesObj } = JSON.parse(response);
-      showDistricts(provincesObj[0].id);
       let html = "";
       provincesObj.forEach((element) => {
         html += `<option value="${element.id}"`;
@@ -326,7 +301,31 @@ const showInfoProvince = (provinceId) => {
         html += `>${element.name_in_thai}</option>`;
       });
       $("#editProvinces").append(html);
-      showInfoDistrict(provinceId);
+    },
+  });
+};
+
+const showInfoDistrict = (provinceId,districtId) => {
+
+  $.ajax({
+    type: "get",
+    data: {
+      provinceId,
+    },
+    url: "query/showDistricts.php",
+    success: function (response) {
+      const { districtsObj } = JSON.parse(response);
+      $("#editAmphures").children().remove()
+      let html = "";
+      districtsObj.forEach((element) => {
+        html += `<option value="${element.id}"`;
+        if (districtId == element.id) {
+          html += "selected";
+        }
+        html += `>${element.name_in_thai}</option>`;
+      });
+      
+      $("#editAmphures").append(html);
     },
   });
 };
@@ -341,6 +340,7 @@ const showInfo = (id) => {
     },
     success: function (data) {
       const new_data = JSON.parse(data);
+      console.log(new_data)
       $("#editPrename").val(new_data.prename);
       $("#editFirstName").val(new_data.firstName);
       $("#editLastName").val(new_data.lastName);
@@ -363,8 +363,10 @@ const showInfo = (id) => {
       $("#editInformerTel").val(new_data.informerTel);
       $("#editRelation").val(new_data.relation);
       $("#idForEdit").val(new_data.id);
+      $("#editZipCode").val(new_data.zip_code)
       $(".canEdit").prop("disabled", true);
       showInfoProvince(new_data.provinceId);
+      showInfoDistrict(new_data.provinceId,new_data.districtId)
       showInfoSubDistrict(new_data.districtId, new_data.subDistrictId);
     },
   });
@@ -558,9 +560,6 @@ const addBaby = (data) => {
           body: "ไม่สามารถบันทึกข้อมูลได้",
           icon: "error",
           useTransparency: true,
-          // onOk: () =>{
-          //   $("#addBaby").modal("hide");
-          // }
         });
       }
     },
