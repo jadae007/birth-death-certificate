@@ -24,11 +24,12 @@ $informerName = $_POST["editInformerName"];
 $informerTel = $_POST["editInformerTel"];
 $relation = $_POST["editRelation"];
 $zipCode = $_POST["editZipCode"];
-
+$editNo = $_POST['editNo'];
 
 $sql ="UPDATE
   birth
 SET
+  no = '$editNo',
   prename = '$prename',
   firstName = '$firstName',
   lastName = '$lastName',

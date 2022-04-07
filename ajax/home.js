@@ -344,6 +344,7 @@ const showInfo = (id) => {
     success: function (data) {
       const new_data = JSON.parse(data);
       console.log(new_data)
+      $("#editNo").val(new_data.no);
       $("#editPrename").val(new_data.prename);
       $("#editFirstName").val(new_data.firstName);
       $("#editLastName").val(new_data.lastName);

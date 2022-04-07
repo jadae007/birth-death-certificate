@@ -289,6 +289,11 @@ require('query/checkLogin.php');
               <div class="container-fluid">
                 <input type="hidden" name="idForEdit" id="idForEdit">
                 <div class="row mt-2 mb-2">
+                <div class="row">
+                  <div class="col-2">
+                    <input class="form-control mb-3 canEdit" type="text" name="editNo" id="editNo" placeholder="ลำดับ">
+                  </div>
+                  </div>
                   <div class="col-2">
                     <label for="editPrename">คำนำหน้า</label>
                     <select class="form-select canEdit" aria-label="Default select example" name="editPrename" id="editPrename">

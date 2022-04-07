@@ -8,6 +8,7 @@ b.id,
 s.id AS subDistrictId,
 p.id AS provinceId,
 d.id AS districtId,
+no,
 prename,
 firstName,
 lastName,
@@ -46,9 +47,9 @@ WHERE
 b.id = '$id'";
 $result = mysqli_query($conn,$sql);
 
-if(mysqli_num_rows($result)>=1){
+if(mysqli_num_rows($result)==1){
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-  $row['birthDateAndtime'] = str_replace(" ","T",$row['birthDateTime']);  
+  $row['birthDateAndtime'] = str_replace(" ","T",$row['birthDateTime']);
 }else{
   $row =null;
 }
