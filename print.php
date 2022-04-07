@@ -136,16 +136,16 @@ $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $row['preNameMother'].$row['firstNameMo
 $pdf->setXY(70, 119);
 $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $row['cidMother']));
 $pdf->setXY(70, 129);
-$pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $row['lastNameMother']));
+$pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $row['lastNameFather']));
 $pdf->setXY(70, 149);
 $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $currentDay));
 $pdf->setXY(95, 149);
 $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', thaiMonth($currentMonth)));
 $pdf->setXY(140, 149);
 $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $currentYear));
-$pdf->setXY(0, 169);
+$pdf->setXY(0, 179);
 $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $row['preNameFather'].$row['firstNameFather']." ".$row['lastNameFather']), 0 , 1 , 'C' );
-$pdf->setXY(75, 199);
-$pdf->Cell(0, 0, iconv('UTF-8', 'cp874',  $row['preNameMother'].$row['firstNameMother']." ".$row['lastNameMother']));
+$pdf->setXY(0, 209);
+$pdf->Cell(0, 0, iconv('UTF-8', 'cp874',  $row['preNameMother'].$row['firstNameMother']." ".$row['lastNameMother']), 0 , 1 , 'C' );
 $pdf->Output();
 ?>
