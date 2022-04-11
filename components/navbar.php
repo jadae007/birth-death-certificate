@@ -5,7 +5,6 @@
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarCenteredExample" aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i> 
     </button>
-
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
       <!-- Left links -->
@@ -18,7 +17,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user"> </i><?php echo " ". $sessionUsername; ?>
+          <i class="fas fa-user"> </i><?php echo " ". $sessionFirstName; ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="userDropdown">
             <li>

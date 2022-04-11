@@ -58,7 +58,6 @@ function preName($pname){
 }
 
 
-
 require('assets/fpdf/fpdf.php');
 //หน้าปก จากซ้าย,จากบน ::จากซ้าย +1
 $pdf = new FPDF('P','mm','A4');
@@ -148,4 +147,6 @@ $pdf->Cell(0, 0, iconv('UTF-8', 'cp874', $row['preNameFather'].$row['firstNameFa
 $pdf->setXY(0, 209);
 $pdf->Cell(0, 0, iconv('UTF-8', 'cp874',  $row['preNameMother'].$row['firstNameMother']." ".$row['lastNameMother']), 0 , 1 , 'C' );
 $pdf->Output();
+
+
 ?>

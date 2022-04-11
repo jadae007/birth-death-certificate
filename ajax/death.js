@@ -364,9 +364,10 @@ const showAllDeath = () => {
     url: "query/showAllDeath.php",
     success: function (response) {
       const { deathObj } = JSON.parse(response);
-     console.log(deathObj)
       if (deathObj != "null") {
         deathObj.forEach((element) => {
+          let formatDate = new Date(element.dateDead.split(" ")[0])
+          let thaiDate = formatDate.getDate()+"-"+(formatDate.getMonth()+1)+"-"+(formatDate.getFullYear()+543)
           $("#tbody").append(`
          <tr>
          <th scope="row">${element.no}</th>
@@ -374,7 +375,7 @@ const showAllDeath = () => {
          <td>${element.address} ต.${element.subDistrict} อ.${element.district} จ.${element.province} ${element.zip_code}</td>
          <td>${element.cid}</td>
          <td>${element.age}</td>
-         <td>${element.dateDead.split(" ")[0]}</td>
+         <td>${thaiDate}</td>
          <td>${element.dateDead.split(" ")[1]}</td>
          <td>${element.department}</td>
          <td>${element.doctorName}</td>

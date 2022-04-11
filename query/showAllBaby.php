@@ -1,7 +1,7 @@
-<?php 
+<?php
 require_once('connect.php');
 
-$sql ="SELECT b.*,s.id AS subDistrictId,
+$sql = "SELECT b.*,s.id AS subDistrictId,
 p.id AS provinceId,
 d.id AS districtId,
 s.name_in_thai AS subDistrict,
@@ -15,15 +15,17 @@ INNER JOIN districts d
 ON s.district_id = d.id
 INNER JOIN provinces p
 ON d.province_id = p.id  WHERE active = 1";
-$result = mysqli_query($conn,$sql);
-if(mysqli_num_rows($result)>=1){
- while($r = mysqli_fetch_assoc($result)){
-   $rows['babyObj'][] = $r;
- }
-}else{
+$result = mysqli_query($conn, $sql);
+
+
+if (mysqli_num_rows($result) >= 1) {
+  while ($r = mysqli_fetch_assoc($result)) {
+    $rows['babyObj'][] = $r;
+  }
+} else {
   $rows['babyObj'] = null;
 }
 
-print json_encode($rows,JSON_UNESCAPED_UNICODE);
+print json_encode($rows, JSON_UNESCAPED_UNICODE);
 mysqli_close($conn);
 ?>

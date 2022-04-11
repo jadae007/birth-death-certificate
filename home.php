@@ -92,7 +92,7 @@ require('query/checkLogin.php');
 
                 <div class="row mb-4 mt-2">
                   <div class="col-3">
-                    <label for="birthDate">วันเกิด</label>
+                    <label for="birthDate">วันเกิด (ปี ค.ศ.)</label>
                     <input type="datetime-local" id="birthDate" name="birthDate" class="form-control">
                   </div>
                   <div class="col-2">
@@ -313,7 +313,7 @@ require('query/checkLogin.php');
 
                 <div class="row mb-4 mt-2">
                   <div class="col-3">
-                    <label for="editBirthDate">วันเกิด</label>
+                    <label for="editBirthDate">วันเกิด (ปี ค.ศ.)</label>
                     <input type="datetime-local" id="editBirthDate" name="editBirthDate" class="form-control canEdit">
                   </div>
                   <div class="col-2">

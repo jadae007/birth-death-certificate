@@ -7,6 +7,7 @@ if(!empty($_POST)){
   $key = "certificateKNH";
   $hash_login_password = hash_hmac('sha256',$password,$key);  
 
+
   $sql = "SELECT * FROM users WHERE username=? AND password=?";
   $stmt = mysqli_prepare($conn,$sql);
   mysqli_stmt_bind_param($stmt,"ss",$username, $hash_login_password);
@@ -22,6 +23,7 @@ if(!empty($_POST)){
     }
     $_SESSION['loginId'] = $row_user['id'];
     $_SESSION['username'] = $row_user['username'];
+    $_SESSION['firstName'] = $row_user['firstName'];
     $_SESSION['project'] = "certificate";
     if($row_user['role']== 0){
       if(isset($_POST['remember'])){

@@ -88,12 +88,14 @@ const showAllBaby = () => {
       const { babyObj } = JSON.parse(data);
       if(babyObj != null){
       babyObj.forEach((element) => {
+        let formatDate = new Date(element.birthDateTime.split(" ")[0])
+        let thaiDate = formatDate.getDate()+"-"+(formatDate.getMonth()+1)+"-"+(formatDate.getFullYear()+543)
         $("#tbody").append(`
       <tr>
       <th scope="row">${element.no}</th>
       <td>${element.prename}${element.firstName} ${element.lastName}</td>
       <td>${element.address} ต.${element.subDistrict} อ.${element.district} จ.${element.province} ${element.zip_code}</td>
-      <td>${element.birthDateTime.split(" ")[0]}</td>
+      <td>${thaiDate}</td>
       <td>${element.weight}</td>
       <td>${element.preNameFather}${element.firstNameFather} ${
           element.lastNameFather

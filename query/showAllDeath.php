@@ -18,6 +18,8 @@ ON d.province_id = p.id
 $result = mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>0){
   $rows['deathObj'] = mysqli_fetch_all($result,MYSQLI_ASSOC);
+  $date = date_create($r['dateDead']);
+  $r['dateFormat'] = date_format($date, "d-m-Y");
 }else{
 $rows['deathObj'] = null;
 }
