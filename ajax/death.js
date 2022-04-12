@@ -447,9 +447,10 @@ const addDeath = (data) => {
           },
         });
       } else {
+        const { errMsg } = JSON.parse(response);
         SoloAlert.alert({
           title: "ERROR!!",
-          body: "ไม่สามารถบันทึกข้อมูลได้",
+          body: `ไม่สามารถบันทึกข้อมูลได้ ${errMsg}`,
           icon: "error",
           useTransparency: true,
         });
