@@ -7,6 +7,8 @@ $department = trim($_POST['department']);
 $hn = trim($_POST['hn']);
 $cId = trim($_POST['cId']);
 $age = trim($_POST['age']);
+$ageMonth = trim($_POST['ageMonth']);
+$ageDay = trim($_POST['ageDay']);
 $address = trim($_POST['address']);
 $subDistrict = trim($_POST['districts']);
 $deathDate = date("Y-m-d H:i:s", strtotime($_POST['deathDate']));
@@ -35,6 +37,8 @@ $sql = "INSERT INTO
     `hn`,
     `cid`,
     `age`,
+    `ageMonth`,
+    `ageDay`,
     `address`,
     `subDistrict`,
     `dateDead`,
@@ -61,6 +65,8 @@ VALUES (
     '$hn',
     '$cId',
     '$age',
+    '$ageMonth',
+    '$ageDay',
     '$address',
     '$subDistrict',
     '$deathDate',

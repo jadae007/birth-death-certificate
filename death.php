@@ -106,13 +106,21 @@ require('query/checkLogin.php');
                 <label for="hn">HN</label>
                 <input type="text" id="hn" name="hn" class="form-control" maxlength="7" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="HN" required>
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <label for="cId">เลขบัตร ปชช.</label>
                 <input type="text" id="cId" name="cId" class="form-control" maxlength="13" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="เลขบัตรประจำตัวประชาชน" required>
               </div>
               <div class="col-2">
                 <label for="age">อายุ</label>
-                <input type="text" id="age" name="age" class="form-control" maxlength="3" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="อายุ" required>
+                <input type="text" id="age" name="age" class="form-control" maxlength="3" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="ปี" required>
+              </div>
+              <div class="col-2">
+                <label for="ageMonth">เดือน</label>
+                <input type="text" id="ageMonth" name="ageMonth" class="form-control" maxlength="3" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="เดือน" required>
+              </div>
+              <div class="col-2">
+                <label for="ageDay">วัน</label>
+                <input type="text" id="ageDay" name="ageDay" class="form-control" maxlength="3" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="วัน" required>
               </div>
               <!-- <div class="col-2">
                 <label for="sex">เพศ</label>

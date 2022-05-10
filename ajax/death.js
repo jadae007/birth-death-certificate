@@ -169,6 +169,8 @@ const showInfo = (id) => {
         $("#hn").val(data.hn);
         $("#cId").val(data.cid);
         $("#age").val(data.age);
+        $("#ageMonth").val(data.ageMonth);
+        $("#ageDay").val(data.ageDay);
         $("#address").val(data.address);
         $("#zipCode").val(data.zip_code);
         $("#deathDate").val(data.deathDateAndtime);
