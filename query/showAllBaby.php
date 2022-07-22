@@ -1,6 +1,6 @@
 <?php
 require_once('connect.php');
-
+$year = $_GET['year'];
 $sql = "SELECT b.*,s.id AS subDistrictId,
 p.id AS provinceId,
 d.id AS districtId,
@@ -14,9 +14,8 @@ ON b.subDistrict = s.id
 INNER JOIN districts d
 ON s.district_id = d.id
 INNER JOIN provinces p
-ON d.province_id = p.id  WHERE active = 1";
+ON d.province_id = p.id  WHERE active = 1 AND b.no LIKE '%/$year'";
 $result = mysqli_query($conn, $sql);
-
 
 if (mysqli_num_rows($result) >= 1) {
   while ($r = mysqli_fetch_assoc($result)) {

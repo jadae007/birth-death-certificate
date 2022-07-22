@@ -1,8 +1,18 @@
 var getZipCode = {};
+var gobalYear = 0 
 $(document).ready(function () {
+  let year = $("#year").val()
+  gobalYear = year
   $("#birthMenu a").addClass("active ");
   showAllBaby();
   showProvinces();
+});
+
+$("#changeYear").click(function (e) {
+  let year = $("#year").val()
+  gobalYear = year
+  e.preventDefault();
+  showAllBaby()
 });
 
 $("#editProvinces").change(function (e) {
@@ -83,16 +93,22 @@ $("#editBirthDate").change(function () {
 const showAllBaby = () => {
   $.ajax({
     type: "get",
+    data:{
+      year:gobalYear
+    },
     url: "query/showAllBaby.php",
     success: function (data) {
       const { babyObj } = JSON.parse(data);
       if(babyObj != null){
-      babyObj.forEach((element) => {
+        $("#babyTable").DataTable().destroy();
+        $("#tbody").children().remove();
+        babyObj.forEach((element) => {
+        let number = Number(element.no.split("/")[0])
         let formatDate = new Date(element.birthDateTime.split(" ")[0])
         let thaiDate = formatDate.getDate()+"-"+(formatDate.getMonth()+1)+"-"+(formatDate.getFullYear()+543)
         $("#tbody").append(`
       <tr>
-      <th scope="row">${element.no}</th>
+      <th scope="row" data-order=${number}>${element.no}</th>
       <td>${element.prename}${element.firstName} ${element.lastName}</td>
       <td>${element.address} ต.${element.subDistrict} อ.${element.district} จ.${element.province} ${element.zip_code}</td>
       <td>${thaiDate}</td>
@@ -120,7 +136,7 @@ const showAllBaby = () => {
       `);
       });
       $('td:nth-child(3),th:nth-child(3)').hide();
-      table = $("#babyTable").DataTable({
+      $("#babyTable").DataTable({
         dom: "Bfrtip",
         buttons: [
           {
@@ -160,8 +176,6 @@ const editBaby = () => {
           icon: "success",
           useTransparency: true,
           onOk: () => {
-            table.destroy();
-            $("#tbody").children().remove();
             showAllBaby();
             $("#showBaby").modal("hide");
             $(":input").removeClass("border border-danger");
@@ -247,8 +261,6 @@ const deleteBaby = (id) => {
               icon:"success",
               useTransparency: true,
               onOk : ()=>{
-               $("#babyTable").DataTable().destroy();
-               $("#tbody").children().remove();
                showAllBaby();
               },
             })
@@ -558,8 +570,6 @@ const addBaby = (data) => {
           icon: "success",
           useTransparency: true,
           onOk: () => {
-            table.destroy();
-            $("#tbody").children().remove();
             showAllBaby();
           },
         });

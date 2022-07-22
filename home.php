@@ -21,7 +21,14 @@ require('query/checkLogin.php');
     <div class="row mt-5 mb-5">
       <div class="col-1">
       </div>
-      <div class="col-10 text-end">
+      <div class="col-3">
+      <div class="input-group mb-3">
+  <span class="input-group-text">ปี</span>
+  <input type="text" class="form-control" name="year" id="year" value="<?php echo date("Y")+543; ?>">
+  <button type="button" class="btn btn-success" id="changeYear">Submit</button>
+</div>
+      </div>
+      <div class="col-7 text-end">
         <button type="button" class="btn btn-success btn-rounded btn-lg" data-mdb-toggle="modal" data-mdb-target="#addBaby" style="font-size: 16px;">บันทึกแจ้งเกิด</button>
       </div>
       <div class="col">
@@ -217,11 +224,11 @@ require('query/checkLogin.php');
                 <div class="row mb-4 mt-2">
                   <div class="col-6">
                     <label for="cidFather">เลขบัตร ปชช. บิดา</label>
-                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" id="cidFather" name="cidFather" class="form-control" placeholder="เลขบัตร ปชช. บิดา">
+                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" maxlength="13" minlength="3"  id="cidFather" name="cidFather" class="form-control" placeholder="เลขบัตร ปชช. บิดา">
                   </div>
                   <div class="col-6">
                     <label for="cidMother">เลขบัตร ปชช. มารดา</label>
-                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" id="cidMother" name="cidMother" class="form-control" placeholder="เลขบัตร ปชช. มารดา">
+                    <input type="text" onkeypress="return event.charCode>=48 && event.charCode<=57" maxlength="13" minlength="13" id="cidMother" name="cidMother" class="form-control" placeholder="เลขบัตร ปชช. มารดา">
                   </div>
                 </div>
                 <hr>

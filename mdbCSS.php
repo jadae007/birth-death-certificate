@@ -10,7 +10,9 @@
 <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.min.css"/>
 <!-- select2 -->
 <!-- <link href="./assets/css/select2.min.css" rel="stylesheet" /> -->
-
+<!-- Tempus Dominus Styles -->
+<link href="./assets/css/tempus-dominus.css"
+      rel="stylesheet" >
 
 <style>
   body {

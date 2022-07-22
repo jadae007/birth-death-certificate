@@ -21,7 +21,15 @@ require('query/checkLogin.php');
     <div class="row mt-5 mb-5">
       <div class="col-1">
       </div>
-      <div class="col-10 text-end">
+      <div class="col-3">
+      <div class="input-group mb-3">
+  <span class="input-group-text">ปี</span>
+  <input type="text" class="form-control" name="year" id="year" value="<?php echo date("Y")+543; ?>">
+  <button type="button" class="btn btn-success" id="changeYear">Submit</button>
+</div>
+      </div>
+      <div class="col-7 text-end">
+
         <button type="button" data-mdb-toggle="modal" id="btnAddDeath" data-mdb-target="#deathCer" class="btn btn-danger btn-rounded btn-lg" style="font-size: 16px;">บันทึกการแจ้งตาย</button>
       </div>
       <div class="col">

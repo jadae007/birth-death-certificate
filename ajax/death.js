@@ -1,10 +1,18 @@
 var stateModal = 0;
+var gobalYear = 0 
 $(document).ready(function () {
+  let year = $("#year").val()
+  gobalYear = year
   $("#deadMenu a").addClass("active ");
   showAllDeath();
   showProvinces();
 });
-
+$("#changeYear").click(function (e) {
+  let year = $("#year").val()
+  gobalYear = year
+  e.preventDefault();
+  showAllDeath()
+});
 $("#provinces").change(function () {
   $("#amphures").children().remove();
   $("#districts").children().remove();
@@ -43,6 +51,9 @@ $("#deathDate").change(function (e) {
 $("#btnAddDeath").click(()=>{
 $.ajax({
   type: "GET",
+  data:{
+    year:gobalYear
+  },
   url: "query/showLastDeathId.php",
   success: function (response) {
     $("#no").val(response)
@@ -301,8 +312,6 @@ const deleteDeath = (id) => {
               icon: "success",
               useTransparency: true,
               onOk: () => {
-                $("#table").DataTable().destroy();
-                $("#tbody").children().remove();
                 showAllDeath();
               },
             });
@@ -361,18 +370,25 @@ const showSubDistricts = (districtId) => {
 };
 
 const showAllDeath = () => {
+
   $.ajax({
     type: "get",
+    data:{
+      year:gobalYear
+    },
     url: "query/showAllDeath.php",
     success: function (response) {
       const { deathObj } = JSON.parse(response);
       if (deathObj != "null") {
+        $("#table").DataTable().destroy();
+        $("#tbody").children().remove();
         deathObj.forEach((element) => {
+          let number = Number(element.no.split("/")[0])
           let formatDate = new Date(element.dateDead.split(" ")[0])
           let thaiDate = formatDate.getDate()+"-"+(formatDate.getMonth()+1)+"-"+(formatDate.getFullYear()+543)
           $("#tbody").append(`
          <tr>
-         <th scope="row">${element.no}</th>
+         <th scope="row" data-order=${number}>${element.no}</th>
          <td>${element.prename}${element.firstName} ${element.lastName}</td>
          <td>${element.address} ต.${element.subDistrict} อ.${element.district} จ.${element.province} ${element.zip_code}</td>
          <td>${element.cid}</td>
@@ -443,8 +459,6 @@ const addDeath = (data) => {
           icon: "success",
           useTransparency: true,
           onOk: () => {
-            table.destroy();
-            $("#tbody").children().remove();
             showAllDeath();
           },
         });
@@ -482,8 +496,6 @@ const editDeath = (data) => {
           icon: "success",
           useTransparency: true,
           onOk: () => {
-            table.destroy();
-            $("#tbody").children().remove();
             showAllDeath();
           },
         });
