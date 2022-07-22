@@ -9,9 +9,4 @@
 <!-- select2 -->
 <!-- <script src="./assets/js/select2.min.js"></script> -->
 
-<!-- Popperjs -->
-<script src="./assets/js/popper.min.js"></script>
-<!-- Tempus Dominus JavaScript -->
-<script src="./assets/js/tempus-dominus.js"
-      crossorigin="anonymous"></script>
 
