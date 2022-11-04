@@ -4,6 +4,7 @@ if(isset($_COOKIE['project']) &&  $_COOKIE['project'] == "certificate"){
   $_SESSION['loginId'] = $_COOKIE['loginId'];
   $_SESSION['role'] = $_COOKIE['role'];
   $_SESSION['username'] = $_COOKIE['username'];
+  $_SESSION['firstName'] = $_COOKIE['firstName'];
   header("Location:home.php");
   
 }
