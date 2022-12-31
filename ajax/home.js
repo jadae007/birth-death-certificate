@@ -394,8 +394,9 @@ const printDoc = (id) =>{
 }
 
 const calDay = (date, modal) => {
-  $.getJSON("json/2022.json", function (data) {
-    const new_data = data.year2022;
+  let selectedYear = date.substr(0, 4)
+  $.getJSON(`json/${selectedYear}.json`, function (data) {
+    const new_data = data.year;
     let day = {};
     new_data.forEach((element) => {
       if (date == element.date) {
