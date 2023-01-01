@@ -146,8 +146,17 @@ const showAllBaby = () => {
         ],
       });
     }else{
-      $("#contents").children().remove();
-      $("#contents").html("<h1 class='text-center'>ไม่มีข้อมูล</h1>")
+      $("#babyTable").DataTable().destroy();
+      $("#tbody").children().remove();
+      $("#babyTable").DataTable({
+        dom: "Bfrtip",
+        buttons: [
+          {
+            extend: "excelHtml5",
+            className: "btn btn-success",
+          },
+        ],
+      });
     }
     },
   });

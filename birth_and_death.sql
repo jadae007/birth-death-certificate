@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2022 at 04:17 AM
+-- Generation Time: Jan 01, 2023 at 04:51 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -54,15 +54,23 @@ CREATE TABLE `birth` (
   `subDistrict` varchar(50) DEFAULT NULL,
   `informerName` varchar(200) DEFAULT NULL,
   `informerTel` varchar(10) DEFAULT NULL,
-  `relation` varchar(20) DEFAULT NULL
+  `relation` varchar(20) DEFAULT NULL,
+  `recorder` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `birth`
 --
 
-INSERT INTO `birth` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `birthDateTime`, `birthDay`, `weight`, `lunarPhase`, `thaiMonth`, `thaiYears`, `preNameFather`, `firstNameFather`, `midNameFather`, `lastNameFather`, `cidFather`, `preNameMother`, `firstNameMother`, `midNameMother`, `lastNameMother`, `cidMother`, `address`, `subDistrict`, `informerName`, `informerTel`, `relation`) VALUES
-(11, '1/2564', 'ด.ช.', 'cidMother', '', 'asdasd', '2022-02-24 11:04:00', 'พฤหัสบดี', 3000, 'แรม 8', '3', 'ฉลู', 'asd', 'asdas', NULL, 'dasd', '11899', 'das', 'd', NULL, 'dasd', '11566', 'asdasd', '1341', 'dasd', '099', 'asdqwe');
+INSERT INTO `birth` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `birthDateTime`, `birthDay`, `weight`, `lunarPhase`, `thaiMonth`, `thaiYears`, `preNameFather`, `firstNameFather`, `midNameFather`, `lastNameFather`, `cidFather`, `preNameMother`, `firstNameMother`, `midNameMother`, `lastNameMother`, `cidMother`, `address`, `subDistrict`, `informerName`, `informerTel`, `relation`, `recorder`, `active`, `timestamp`) VALUES
+(11, '101/2564', 'ด.ช.', 'cidMother', '', 'asdasd', '2022-02-24 11:04:00', 'พฤหัสบดี', 3000, 'แรม 8', '3', 'ฉลู', 'asd', 'asdas', NULL, 'dasd', '11899', 'das', 'd', NULL, 'dasd', '11566', 'asdasd', '1365', 'dasd', '099', 'asdqwe', 'user', 0, '2022-07-22 04:37:46'),
+(14, '1/2565', 'ด.ช.', 'ธนพงศ์', '', 'เขียวโพธิ์', '2022-03-25 00:20:00', 'ศุกร์', 3000, 'แรม 8', '4', 'ฉลู', 'นาย', '1', NULL, '2', '6', '3', '4', NULL, '5', '7', '8', '1', '1', '1', '1', 'user', 1, '2022-07-22 04:33:06'),
+(15, '101/2565', 'ด.ช.', 'ธนพงศ์', '', 'เขียวโพธิ์', '1998-01-02 14:17:00', 'จันทร์', 99, 'แรม 2', '5', 'ขาล', 'นาย', 'รังสรรค์', NULL, 'เขียวโพธิ์', '1588458630482', 'นาง', 'สมคิด', NULL, 'เขียวโพธิ์', '1452567851243', 'กฟหกฟหก', '787', 'ฟหก', '0698989898', 'กหฟก', 'user', 1, '2022-07-22 04:33:40'),
+(18, '999/2565', 'ด.ช.', 'asdddd', '', 'asd', '2022-07-04 11:29:00', 'จันทร์', 300, 'ขึ้น 6', '8', 'ขาล', 'นาย', 'สาย', NULL, 'สาก', '1189900258774', 'นาง', 'อิอิ', NULL, 'อุอุ', '1189900258773', 'ซิตี้เพลส ลพบุรี 125/13 ม.1 ต.เขาสามยอด\r\nอ.เมืองลพ', '1184', 'นายเด้ เขียวโพธิ์', '0970616129', 'ไม่ทราบ', 'admin', 1, '2022-07-22 04:31:43'),
+(19, '1000/2565', 'ด.ช.', 'ทดสอบฟหกหก', '', 'ทดสอบนามสกุล', '2022-07-20 11:34:00', 'พุธ', 200, 'แรม 7', '8', 'ขาล', 'นาย', 'อิอิ', NULL, 'ฟหกๆไำ', '1111111111156', 'ฟหกฟห', 'ก', NULL, 'ฟหกฟหก', '5645845878788', 'ซิตี้เพลส ลพบุรี 125/13 ม.1 ต.เขาสามยอด\r\nอ.เมืองลพ', '1', 'กฟหกฟห', '0970616129', 'ไม่ทราบ', 'admin', 1, '2022-07-22 04:34:43'),
+(20, '1/2564', 'ด.ญ.', 'Tanapong', '', 'Keawpho', '2022-07-14 11:36:00', 'พฤหัสบดี', 88, 'แรม 1', '8', 'ขาล', 'นาย', 'ธนพงศ์', NULL, 'เขียวโพธิ์', '5487878787145', 'นาง', 'อิอิ', NULL, 'อิอิอิอิ', '1578458787544', 'ซิตี้เพลส ลพบุรี 125/13 ม.1 ต.เขาสามยอด\r\nอ.เมืองลพ', '1', 'นาย', '0970616129', 'ไม่ทราบ', 'admin', 1, '2022-07-22 04:37:31');
 
 -- --------------------------------------------------------
 
@@ -80,6 +88,8 @@ CREATE TABLE `death` (
   `hn` varchar(7) NOT NULL,
   `cid` varchar(13) NOT NULL,
   `age` int(3) DEFAULT NULL,
+  `ageMonth` int(2) DEFAULT 0,
+  `ageDay` int(2) DEFAULT 0,
   `address` varchar(100) DEFAULT NULL,
   `subDistrict` varchar(50) DEFAULT NULL,
   `dateDead` datetime DEFAULT NULL,
@@ -93,17 +103,26 @@ CREATE TABLE `death` (
   `causeOfDeath2` varchar(255) DEFAULT NULL,
   `causeOfDeath3` varchar(255) DEFAULT NULL,
   `causeOfDeath4` varchar(255) DEFAULT NULL,
-  `causeOfDeathThai` varchar(255) NOT NULL
+  `additionalCause` varchar(255) DEFAULT NULL,
+  `causeOfDeathThai` varchar(255) NOT NULL,
+  `recorder` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `death`
 --
 
-INSERT INTO `death` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `hn`, `cid`, `age`, `address`, `subDistrict`, `dateDead`, `department`, `doctorName`, `informerName`, `informerCid`, `informerTel`, `relation`, `causeOfDeath1`, `causeOfDeath2`, `causeOfDeath3`, `causeOfDeath4`, `causeOfDeathThai`) VALUES
-(1, '1/2565', 'นาย', 'ทดสอบ11', NULL, 'นามสกุลทดสอบ11', '0123456', '1189900258411', 21, '222 ม.6', '1', '2022-03-14 04:49:19', 'อญ1', 'นพ.ทดสอบ อิอิ', 'นายทดสอบ ให้ข้อมูล', '112345678933', '0970212', 'ไม่ทราบ', 'death11', 'death22', 'death33', '', 'ตุยๆ'),
-(2, '2/2565', 'นาง', 'ทดสอบ2', NULL, 'ทดสอบ2', '0123459', '1579856932135', 32, '6565', '7311', '2022-03-03 16:00:19', 'ICU MED', 'พญ.ทดสอบ คิคิ', 'นายทดสอบ ให้ข้อมูล2', '1256983458213', '0598321369', 'หลาน', 'testdeath1', 'death2', NULL, NULL, 'ตุยแล้ว'),
-(4, '3/2565', 'นาย', 'ทดสอบๆๆ', NULL, 'หกดหกด', '0655985', '1748798545798', 23, '333 ม.66', '3382', '2022-03-01 09:57:00', 'ศัลยกรรม 1', 'นพ.ทดสอบๆๆๆ', 'ธนพงศ์ เขียวโพธิ์', '1189900258441', '0970616129', 'ไม่ทราบ', 'Death', 'dd', '', '', 'ตุยๆๆๆ');
+INSERT INTO `death` (`id`, `no`, `prename`, `firstName`, `midName`, `lastName`, `hn`, `cid`, `age`, `ageMonth`, `ageDay`, `address`, `subDistrict`, `dateDead`, `department`, `doctorName`, `informerName`, `informerCid`, `informerTel`, `relation`, `causeOfDeath1`, `causeOfDeath2`, `causeOfDeath3`, `causeOfDeath4`, `additionalCause`, `causeOfDeathThai`, `recorder`, `active`, `timestamp`) VALUES
+(1, '1/2565', 'นาย', 'ทดสอบ11', NULL, 'นามสกุลทดสอบ11', '0123456', '1189900258411', 21, 0, 0, '222 ม.6', '1', '2022-03-14 04:49:19', 'อญ1', 'นพ.ทดสอบ อิอิ', 'นายทดสอบ ให้ข้อมูล', '112345678933', '0970212', 'ไม่ทราบ', 'death11dd', 'death22', 'death33', '', '', 'ตุยๆ', '', 0, '2022-03-30 03:44:31'),
+(2, '2/2565', 'นาง', 'ทดสอบ2', NULL, 'ทดสอบ2', '0123459', '1579856932135', 32, 0, 0, '6565', '947', '2022-03-03 16:00:19', 'ICU MED', 'พญ.ทดสอบ คิคิ', 'นายทดสอบ ให้ข้อมูล2', '1256983458213', '0598321369', 'หลาน', 'testdeath1', 'death2', '', '', '', 'ตุยแล้ว', '', 1, '2022-04-05 06:57:04'),
+(4, '3/2565', 'นาย', 'ทดสอบๆๆ', NULL, 'หกดหกด', '0655985', '1748798545798', 23, 0, 0, '333 ม.66', '1277', '2022-03-01 09:57:00', 'ศัลยกรรม 1', 'นพ.ทดสอบๆๆๆ', 'ธนพงศ์ เขียวโพธิ์', '1189900258441', '0970616129', 'ไม่ทราบ', 'Death', 'dd', '', '', 'dddddddddd', 'ตุยๆๆๆ', '', 1, '2022-04-05 03:38:23'),
+(15, '220/2565', 'นาน', 'กฟหกฟหก', NULL, 'ฟหกฟห', '5555555', '9695898989898', 11, 0, 0, 'ฟหก', '782', '2022-04-23 16:19:00', 'extern', 'ฟหกฟห', 'กุสุมา อยู่ขำ', '5656568787878', '5998989898', 'ไม่ทราบ', 'ฟหกฟห', '', '', '', '69999', 'กกก', 'admin', 0, '2022-07-22 04:19:40'),
+(24, '6/2564', 'นาย', 'ทดสอบๆๆๆ', NULL, 'ทดสอบๆๆ', '0656598', '8787851564556', 10, 5, 9, 'ซิตี้เพลส ลพบุรี 125/13 ม.1 ต.เขาสามยอด', '1341', '2022-05-10 09:32:00', 'ศัลยกรรม 1', 'นพ.ทดสอบๆๆๆ', 'Tanapong Keawpho', '1189900258441', '0970616129', 'ไม่ทราบ', 'ฟหกฟห', '', '', '', '', 'ตุยยยยยย', 'user', 1, '2022-07-22 03:42:33'),
+(26, '7/2564', 'นาย', 'ทดสอบ2564', NULL, 'ทดสอบนามสกุล', '0659994', '6565989898454', 1, 1, 1, 'ฟหกฟหก', '1361', '2022-07-22 11:09:00', 'ศูนย์คอมพิวเตอร์', 'นพ.ทดสอบ ทดสอบ', 'ทดสอบ ทดสอบนามสกุล', '1189900258441', '0989898988', 'ไม่ทราบ', 'DEATH', '', '', '', '', 'กฟหก', 'admin', 1, '2022-07-22 04:10:18'),
+(27, '8/2564', 'นาย', 'ทดสอบ2564 2', NULL, 'ทดสอบนามสกุล', '0123457', '5498798154787', 1, 4, 4, '4', '693', '2022-07-22 11:12:00', '23123', '2323', 'ทดสอบ ทดสอบนามสกุล', '9999999999999', '0970616129', 'ไม่ทราบ', '2323', '', '', '', '', 'ตุยๆๆๆ', 'admin', 1, '2022-07-22 04:13:03'),
+(28, '221/2565', 'นาย', 'asd222', NULL, 'asd', '0123453', '1189900256598', 1, 1, 1, '1', '1', '2022-07-29 11:19:00', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'admin', 1, '2022-07-22 04:19:22');
 
 -- --------------------------------------------------------
 
@@ -8574,7 +8593,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `firstName`, `lastNam
 -- Indexes for table `birth`
 --
 ALTER TABLE `birth`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no` (`no`);
 
 --
 -- Indexes for table `death`
@@ -8625,13 +8645,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `birth`
 --
 ALTER TABLE `birth`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `death`
 --
 ALTER TABLE `death`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `districts`
